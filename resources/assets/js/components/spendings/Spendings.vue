@@ -41,7 +41,7 @@
                     </td>
                     <td>
                         <span class="on-non-active">
-                            <span v-if="spending.user">{{ spending.user.name }}</span>
+                            <span v-if="spending.user" :style="'color:' + spending.user.color">{{ spending.user.name }}</span>
                             <span v-else="spending.user">/</span>
                         </span>
                         <span class="on-active">

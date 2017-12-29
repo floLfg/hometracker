@@ -1,12 +1,12 @@
 <template>
 	<div class="blue-box">
-        <form v-on:submit.prevent="storeUser(user)">
-            <input type="text" ref="name" name="name" v-model="user.name" class="form-control" placeholder= "Nom ...">
-            <br>
-            <input type="text" ref="email" name="email" v-model="user.email" class="form-control" placeholder="Email ...">
-            <br>
+        <form v-on:submit.prevent="storeUser(user)" style="display: flex;">
+
+            <input type="text" ref="name" name="name" v-model="user.name" class="form-control" placeholder= "Nom ..." style="flex: 0 1 100%;margin: 0 5px;">
+            <input type="text" ref="email" name="email" v-model="user.email" class="form-control" placeholder="Email ..." style="flex: 0 1 100%;margin: 0 5px;">
+            <input type="color" ref="color" name="color" v-model="user.color" class="form-control" style="flex: 0 1 100%;margin: 0 5px;">
             <input type="password" ref="password" name="password" v-model="user.password" class="form-control" placeholder="Mot de passe ...">
-            <br>
+
             <button type="submit" class="btn btn-primary">Ajouter</button>
         </form>
 	</div>
@@ -19,7 +19,8 @@
                 user: {
                     name: '',
                     email: '',
-                    password: ''
+                    password: '',
+                    color: '#eeeeee'
                 }
             };   
         },

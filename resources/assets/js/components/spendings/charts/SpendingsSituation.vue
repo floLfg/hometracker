@@ -60,7 +60,6 @@
 	    methods: {
 	      	fetchData() {
                 axios.get('api/charts/situation?month=' + this.month).then((response) => {
-                    let colors = ['#2980b9', '#f1c40f', '#e67e22', '#9b59b6'];
 
                     let series = {
                         name: 'Dépenses',
@@ -71,10 +70,11 @@
                     for (let i = 0; i <  response.data.length; i ++) {
                         let data = response.data[i];
                         let title = data.name || 'Commun';
+                        let color = data.color || '#ccc';
                         series.data.push({
                             name: title,
                             y: data.total,
-                            color: colors[i]
+                            color: color
                         });
                     }
 

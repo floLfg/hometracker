@@ -1,10 +1,12 @@
 <template>
-	<div class="blue-box user-show" v-on:click="editUser(item)">
+	<div class="blue-box user-show" v-on:click="editUser(item)" style="border-bottom: 30px solid;padding-bottom: 15px;" :style="'border-color:'+user.color">
         <div v-show="editing">
             <form v-on:submit.prevent="updateUser(item)" v-bind:id="'form-user-' + item.id">
                 <input type="text" ref="name" name="name" v-model="item.name" class="form-control">
                 <br>
                 <input type="text" ref="email" name="email" v-model="item.email" class="form-control">
+                <br>
+                <input type="color" ref="color" name="color" v-model="user.color" class="form-control">
                 <button v-show="false" type="submit" class="btn btn-primary">Enregistrer</button>
             </form>
         </div>

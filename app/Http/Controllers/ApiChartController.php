@@ -50,7 +50,7 @@ class ApiChartController extends Controller
                   ->whereDate('date', '>=', $start)
                   ->whereDate('date', '<', $end)
                   ->leftJoin('users', 'user_id', '=', 'users.id')
-                  ->select(DB::raw('SUM(spendings.amount) as total'), 'users.name')
+                  ->select(DB::raw('SUM(spendings.amount) as total'), 'users.name', 'users.color')
                   ->groupBy('user_id')
                   ->orderBy('total', 'desc')
                   ->get();
