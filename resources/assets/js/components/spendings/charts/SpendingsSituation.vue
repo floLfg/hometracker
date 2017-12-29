@@ -19,7 +19,7 @@
 
         <vue-highcharts :options="options" ref="situationChart"></vue-highcharts>
 
-        <h4 style="text-align: center;">Total : {{ total }} €</h4>
+        <h4 style="text-align: center;">Total : {{ total.toFixed(2) }} €</h4>
 	</div>
 </template>
 
