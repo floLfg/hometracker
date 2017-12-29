@@ -18,6 +18,8 @@
         </legend>
 
         <vue-highcharts :options="options" ref="situationChart"></vue-highcharts>
+
+        <h4 style="text-align: center;">Total : {{ total }} €</h4>
 	</div>
 </template>
 
@@ -25,6 +27,7 @@
     export default {
         data() {
       		return{
+                total: 0,
                 month: 1,
         		options: {
                     title: {text: ''},
@@ -60,7 +63,7 @@
 	    methods: {
 	      	fetchData() {
                 axios.get('api/charts/situation?month=' + this.month).then((response) => {
-
+                    this.total = 0;
                     let series = {
                         name: 'Dépenses',
                         innerSize: '50%',
@@ -76,6 +79,7 @@
                             y: data.total,
                             color: color
                         });
+                        this.total += data.total;
                     }
 
                     let situationChart = this.$refs.situationChart;
