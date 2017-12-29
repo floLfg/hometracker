@@ -1,0 +1,206 @@
+@import url("https://fonts.googleapis.com/css?family=Lobster:300,400,600");
+@import "variables";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+body {
+	background-color: #f9f9f9;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+	background-color: #fff;
+}
+
+button {
+	outline: none !important;
+}
+
+legend {
+	font-family: Lobster;
+	color: $blue_grey;
+	border-color: $blue_grey;
+	font-size: 24px;
+
+	button {
+		float: right;
+	    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	    margin-top: -5px;
+	}
+}
+
+.highcharts-container  {
+	margin: auto;
+}
+
+.full-page {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+}
+
+.page-content {
+	width: calc(100% - $menuWidth);
+	margin-left: $menuWidth;
+	padding: 50px;
+}
+
+input[type=color] {
+	min-width: 42px !important;
+}
+
+tbody.center,
+thead.center {
+	tr th,
+	tr td {
+		text-align: center;
+	}
+}
+
+td.small {
+	width: 125px;
+}
+
+.flex-container {
+	display: flex;
+
+	&.center {
+		justify-content: center;
+	}
+}
+
+.home {
+	background-image: url(../img/kitchen.jpg);
+	background-size: cover;
+}
+
+.menu {
+	height: 100%;
+	position: fixed;
+	z-index: 1000;
+	top: 0;
+	left: 0;
+	border-right: 1px solid $blue_grey;
+	background-color: rgba(255, 255, 255, 0.9);
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.25s;
+    overflow: hidden;
+	width: $menuWidth;
+
+    &.active { // active on home page
+    	left: calc(50% - #{$menuWidth + 150}/2);
+		width: $menuWidth + 150;
+		border-left: 1px solid $blue_grey;
+    }
+
+	a {
+		width: 100%;
+		color: $blue_grey;
+		padding: 20px;
+		font-size: 22px;
+		font-family: Lobster;
+		text-align: center;
+		text-decoration: none !important;
+		border-top: 1px solid rgba(255, 255, 255, 0);
+		border-bottom: 1px solid rgba(255, 255, 255, 0);
+		transition: all 0.25s;
+
+		&:hover, &.active {
+			color: $blue;
+			border-color: $blue;
+			background-color: #fff;
+
+			& + a:hover,
+			& + a.active {
+				border-top-color: rgba(255, 255, 255, 0);
+			}
+		}
+	}
+}
+
+.blue-box {
+	padding: 30px;
+	border: 1px solid $blue_grey;
+	border-radius: 5px;
+	background-color: #fff;
+	cursor: pointer;
+}
+
+.user-show {
+	margin: 10px;
+	
+	.name {
+		text-align: center;
+		font-size: 18px;
+		color: $blue;
+	}
+
+	&:hover {
+		background-color: #fdfdfd;
+		border-color: $blue;
+	}
+}
+
+.btn-delete {
+	background: none;
+	border: none;
+	color: red;
+	font-family: Comic Sans Ms;
+	font-size: 12px;
+	outline: none !important;
+
+	&:hover {
+		color: #A00;
+	}
+}
+
+.blue-box {
+	.btn-delete {
+		float: right;
+		margin-top: -20px;
+		margin-right: -20px;
+	}
+}
+
+table .btn-delete {
+	margin-top: 0;
+	margin-left: 0;
+	float: none;
+}
+
+.table-selectable {
+	tbody {
+		tr:not(.active):hover {
+			cursor: pointer;
+		}
+
+		tr:hover, tr.active {
+			&, & td {
+				background-color: #eee;
+			}
+		}
+
+		tr {
+			.on-non-active {
+				display: block;
+			}
+
+			.on-active {
+				display: none;
+			}
+
+			&.active {
+				.on-active {
+					display: block;
+				}
+
+				.on-non-active {
+					display: none;
+				}
+			}
+		}
+	}
+}
