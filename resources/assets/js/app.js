@@ -31,6 +31,7 @@ Vue.component('SpendingCreate', require('./components/spendings/SpendingCreate.v
 Vue.component('SpendingsCharts', require('./components/spendings/charts/SpendingsCharts.vue'));
 Vue.component('SpendingsTotal', require('./components/spendings/charts/SpendingsTotal.vue'));
 Vue.component('SpendingsDividing', require('./components/spendings/charts/SpendingsDividing.vue'));
+Vue.component('SpendingsSituation', require('./components/spendings/charts/SpendingsSituation.vue'));
 
 Vue.component('Categories', require('./components/categories/Categories.vue'));
 Vue.component('CategoryCreate', require('./components/categories/CategoryCreate.vue'));

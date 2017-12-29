@@ -17,7 +17,7 @@
             </select>
         </legend>
 
-        <vue-highcharts :options="options" ref="dividingChart"></vue-highcharts>
+        <vue-highcharts :options="options" ref="situationChart"></vue-highcharts>
 	</div>
 </template>
 
@@ -36,21 +36,16 @@
                     exporting: {enabled: false},
                     chart: {
                         type: 'pie',
-                        height: 250,
+                        height: 300
                     },
                     tooltip: {
-                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b><br>Total: <b>{point.y} €</b>'
+                        pointFormat: 'Part : <b>{point.percentage:.1f}%</b><br>Total : <b>{point.y} €</b>'
                     },
                     plotOptions: {
                         pie: {
-                            shadow: false,
-                            dataLabels: {
-                                enabled: true,
-                                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                                style: {
-                                    color: 'black'
-                                }
-                            }
+                            startAngle: -90,
+                            endAngle: 90,
+                            center: ['50%', '75%']
                         }
                     },
                     series: []
@@ -64,28 +59,28 @@
 	    },
 	    methods: {
 	      	fetchData() {
-                axios.get('api/charts/dividing?month=' + this.month).then((response) => {
+                axios.get('api/charts/situation?month=' + this.month).then((response) => {
+                    let colors = ['#2980b9', '#f1c40f', '#e67e22', '#9b59b6'];
+
                     let series = {
                         name: 'Dépenses',
-                        colorByPoint: true,
                         innerSize: '50%',
                         data: []
                     };
 
                     for (let i = 0; i <  response.data.length; i ++) {
                         let data = response.data[i];
-                        let title = data.title || 'Inconnu';
-                        let color = data.color || '#ccc';
+                        let title = data.name || 'Commun';
                         series.data.push({
                             name: title,
                             y: data.total,
-                            color: color
+                            color: colors[i]
                         });
                     }
 
-                    let dividingChart = this.$refs.dividingChart;
-                    dividingChart.removeSeries();
-                    dividingChart.addSeries(series);
+                    let situationChart = this.$refs.situationChart;
+                    situationChart.removeSeries();
+                    situationChart.addSeries(series);
                 })
                 .catch(error => {
                     this.$root.$refs.toastr.removeByType('error');

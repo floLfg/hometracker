@@ -34,5 +34,6 @@ Route::group(['middleware' => ['auth']], function() {
 
 		Route::get('charts/spendings', 'ApiChartController@spendings');
 		Route::get('charts/dividing', 'ApiChartController@dividing');
+		Route::get('charts/situation', 'ApiChartController@situation');
 	});
 });

@@ -7,15 +7,21 @@
             <li>
                 <button @click="toggleCharts('dividing')" class="toggle-charts btn btn-default dividing">Répartition</button>
             </li>
+            <li>
+                <button @click="toggleCharts('bilan')" class="toggle-charts btn btn-default bilan">Bilan</button>
+            </li>
         </ul>
         <br>
         <div class="tab-content">
             <div data-title="total" class="tab-pane fade in active">
-                <spendings-total ref="spendingsTotalChart"></spendings-total>
+                <spendings-total></spendings-total>
             </div>
             <div data-title="dividing" class="tab-pane fade">
-                <spendings-dividing ref="spendingsDividingChart"></spendings-dividing>
-            </div>  
+                <spendings-dividing></spendings-dividing>
+            </div>
+            <div data-title="bilan" class="tab-pane fade">
+                <spendings-situation></spendings-situation>
+            </div>
         </div>
     </div>
 </template>

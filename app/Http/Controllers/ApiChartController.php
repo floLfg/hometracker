@@ -40,4 +40,21 @@ class ApiChartController extends Controller
 
         return response()->json($data);
     }
+
+    public function situation(Request $request)
+    {
+        $month = $request->input('month', Carbon::now()->month);
+        $start = Carbon::createFromDate(null, $month, 1)->startOfDay();
+        $end = (clone $start)->addMonth();
+        $data = DB::table('spendings')
+                  ->whereDate('date', '>=', $start)
+                  ->whereDate('date', '<', $end)
+                  ->leftJoin('users', 'user_id', '=', 'users.id')
+                  ->select(DB::raw('SUM(spendings.amount) as total'), 'users.name')
+                  ->groupBy('user_id')
+                  ->orderBy('total', 'desc')
+                  ->get();
+
+        return response()->json($data);
+    }
 }
