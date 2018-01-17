@@ -10,13 +10,17 @@ class ApiChartController extends Controller
 {
     public function spendings(Request $request)
     {
-        $data = [];
-        $year = $request->input('year', Carbon::now()->year);
+        $data = [
+          'data' => [],
+          'categories' => []
+        ];
+        $start = Carbon::now()->startOfDay()->subMonths(11);
 
         for($i = 1; $i <= 12; $i ++) {
-            $start = Carbon::createFromDate($year, $i, 1)->startOfDay();
+            $start->addMonth();
+            $data['categories'][] = config()->get('data.months')[$start->month];
             $end = (clone $start)->addMonth();
-            $data[] = DB::table('spendings')->whereDate('date', '>=', $start)
+            $data['data'][] = DB::table('spendings')->whereDate('date', '>=', $start)
                                             ->whereDate('date', '<', $end)
                                             ->sum('amount');
         }
@@ -27,7 +31,8 @@ class ApiChartController extends Controller
     public function dividing(Request $request)
     {
         $month = $request->input('month', Carbon::now()->month);
-        $start = Carbon::createFromDate(null, $month, 1)->startOfDay();
+        $year = $request->input('year', Carbon::now()->year);
+        $start = Carbon::createFromDate($year, $month, 1)->startOfDay();
         $end = (clone $start)->addMonth();
         $data = DB::table('spendings')
                   ->whereDate('date', '>=', $start)
@@ -44,7 +49,8 @@ class ApiChartController extends Controller
     public function situation(Request $request)
     {
         $month = $request->input('month', Carbon::now()->month);
-        $start = Carbon::createFromDate(null, $month, 1)->startOfDay();
+        $year = $request->input('year', Carbon::now()->year);
+        $start = Carbon::createFromDate($year, $month, 1)->startOfDay();
         $end = (clone $start)->addMonth();
         $data = DB::table('spendings')
                   ->whereDate('date', '>=', $start)

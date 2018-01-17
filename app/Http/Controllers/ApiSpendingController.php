@@ -12,11 +12,12 @@ class ApiSpendingController extends Controller
     public function index(Request $request)
     {
         $month = $request->input('month', Carbon::now()->month);
-        $startDate = Carbon::createFromDate(null, $month, 1);
-        $endDate = Carbon::createFromDate(null, $month, 31);
-    	$spendings = Spending::with('user')->with('category')
-                              ->whereDate('date', '>=', $startDate->startOfDay())
-                              ->whereDate('date', '<', $endDate->startOfDay())
+        $year = $request->input('year', Carbon::now()->year);
+        $startDate = Carbon::createFromDate($year, $month, 1)->startOfDay();
+        $endDate = Carbon::createFromDate($year, $month, 31)->startOfDay();
+        $spendings = Spending::with('user')->with('category')
+                              ->whereDate('date', '>=', $startDate)
+                              ->whereDate('date', '<', $endDate)
                               ->orderBy('date', 'desc')
                               ->get();
 

@@ -1,7 +1,7 @@
 <template>
 	<div>
-		<legend style="border: none;">
-            <select v-model="month" style="border: none; outline: none; margin: auto;display: block;" v-on:change="fetchData">
+		<legend style="border: none; text-align: center;">
+            <select v-model="month" style="border: none; outline: none;" v-on:change="fetchData">
                 <option value="1">Janvier</option>
                 <option value="2">Février</option>
                 <option value="3">Mars</option>
@@ -15,6 +15,12 @@
                 <option value="11">Novembre</option>
                 <option value="12">Décembre</option>
             </select>
+
+            <select v-model="year" style="border: none; outline: none;" v-on:change="fetchData">
+                <option value="2017">2017</option>
+                <option value="2018">2018</option>
+                <option value="2019">2019</option>
+            </select>
         </legend>
 
         <vue-highcharts :options="options" ref="dividingChart"></vue-highcharts>
@@ -26,6 +32,7 @@
         data() {
       		return{
                 month: 1,
+                year: 2017,
         		options: {
                     title: {text: ''},
                     subtitle: {text: ''},
@@ -60,11 +67,13 @@
 	    mounted() {
             var today = new Date();
             this.month = today.getMonth() + 1;
+            this.year = today.getFullYear();
             this.fetchData();
 	    },
 	    methods: {
 	      	fetchData() {
-                axios.get('api/charts/dividing?month=' + this.month).then((response) => {
+                let params = '?month=' + parseInt(this.month) + '&year=' + parseInt(this.year);
+                axios.get('api/charts/dividing' + params).then((response) => {
                     let series = {
                         name: 'Dépenses',
                         colorByPoint: true,
