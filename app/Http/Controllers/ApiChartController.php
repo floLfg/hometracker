@@ -14,8 +14,7 @@ class ApiChartController extends Controller
           'data' => [],
           'categories' => []
         ];
-        $start = Carbon::now()->startOfDay()->subMonths(11);
-
+        $start = Carbon::now()->startOfMonth()->startOfDay()->subMonths(11);
         for($i = 1; $i <= 12; $i ++) {
             $start->addMonth();
             $data['categories'][] = config()->get('data.months')[$start->month];
