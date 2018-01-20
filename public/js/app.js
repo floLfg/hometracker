@@ -35317,29 +35317,6 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.spending.label,
-              expression: "spending.label"
-            }
-          ],
-          ref: "label",
-          staticClass: "form-control",
-          attrs: { type: "text", name: "label", placeholder: "Détail ..." },
-          domProps: { value: _vm.spending.label },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.spending, "label", $event.target.value)
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
               value: _vm.spending.amount,
               expression: "spending.amount"
             }
@@ -35360,6 +35337,29 @@ var render = function() {
                 return
               }
               _vm.$set(_vm.spending, "amount", $event.target.value)
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.spending.label,
+              expression: "spending.label"
+            }
+          ],
+          ref: "label",
+          staticClass: "form-control",
+          attrs: { type: "text", name: "label", placeholder: "Détail ..." },
+          domProps: { value: _vm.spending.label },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.spending, "label", $event.target.value)
             }
           }
         }),

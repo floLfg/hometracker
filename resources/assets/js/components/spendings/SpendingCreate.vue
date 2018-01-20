@@ -23,10 +23,10 @@
                 </option>
             </select>
         
-            <input type="text" ref="label" name="label" v-model="spending.label" class="form-control" placeholder="Détail ...">
-        
             <input type="number" ref="amount" name="amount" v-model="spending.amount" class="form-control" placeholder="Montant ..." min="0" step="0.01">
        
+            <input type="text" ref="label" name="label" v-model="spending.label" class="form-control" placeholder="Détail ...">
+
             <button type="submit" class="btn btn-primary">Ajouter</button>
         </form>
 
