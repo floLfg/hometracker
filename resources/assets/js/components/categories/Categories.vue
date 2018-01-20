@@ -43,14 +43,8 @@
         props: {
             categories: {
                 type: Array,
-                required: true,
-                default: function() {
-                    return [];
-                }
+                required: true
             }
-        },
-        mounted() {
-            this.fetchData();
         },
         methods: {
             fetchData () {

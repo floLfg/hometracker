@@ -20,9 +20,11 @@ class ApiChartController extends Controller
             $start->addMonth();
             $data['categories'][] = config()->get('data.months')[$start->month];
             $end = (clone $start)->addMonth();
-            $data['data'][] = DB::table('spendings')->whereDate('date', '>=', $start)
-                                            ->whereDate('date', '<', $end)
-                                            ->sum('amount');
+            $data['data'][] = round(DB::table('spendings')
+                                ->whereNull('deleted_at')
+                                ->whereDate('date', '>=', $start)
+                                ->whereDate('date', '<', $end)
+                                ->sum('amount'), 2);
         }
 
     	return response()->json($data);
@@ -35,10 +37,11 @@ class ApiChartController extends Controller
         $start = Carbon::createFromDate($year, $month, 1)->startOfDay();
         $end = (clone $start)->addMonth();
         $data = DB::table('spendings')
+                  ->whereNull('spendings.deleted_at')
                   ->whereDate('date', '>=', $start)
                   ->whereDate('date', '<', $end)
                   ->leftJoin('categories', 'category_id', '=', 'categories.id')
-                  ->select(DB::raw('SUM(spendings.amount) as total'), 'categories.title', 'categories.color')
+                  ->select(DB::raw('ROUND(SUM(spendings.amount), 2) as total'), 'categories.title', 'categories.color')
                   ->groupBy('category_id')
                   ->orderBy('total', 'desc')
                   ->get();
@@ -53,10 +56,11 @@ class ApiChartController extends Controller
         $start = Carbon::createFromDate($year, $month, 1)->startOfDay();
         $end = (clone $start)->addMonth();
         $data = DB::table('spendings')
+                  ->whereNull('spendings.deleted_at')
                   ->whereDate('date', '>=', $start)
                   ->whereDate('date', '<', $end)
                   ->leftJoin('users', 'user_id', '=', 'users.id')
-                  ->select(DB::raw('SUM(spendings.amount) as total'), 'users.name', 'users.color')
+                  ->select(DB::raw('ROUND(SUM(spendings.amount), 2) as total'), 'users.name', 'users.color')
                   ->groupBy('user_id')
                   ->orderBy('total', 'desc')
                   ->get();

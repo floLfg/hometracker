@@ -54,17 +54,11 @@
         props: {
             users: {
                 type: Array,
-                required: true,
-                default: function() {
-                    return [];
-                }
+                required: true
             },
             categories: {
                 type: Array,
-                required: true,
-                default: function() {
-                    return [];
-                }
+                required: true
             }
         },
         data() {

@@ -7748,6 +7748,7 @@ legend button {
 
 .highcharts-container {
   margin: auto;
+  max-width: 100%;
 }
 
 .full-page {

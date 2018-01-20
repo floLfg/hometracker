@@ -5,10 +5,7 @@
                 <button @click="toggleCharts('total')" class="toggle-charts btn btn-default active total">Synthèse</button>
             </li>
             <li>
-                <button @click="toggleCharts('dividing')" class="toggle-charts btn btn-default dividing">Répartition</button>
-            </li>
-            <li>
-                <button @click="toggleCharts('bilan')" class="toggle-charts btn btn-default bilan">Bilan</button>
+                <button @click="toggleCharts('detail')" class="toggle-charts btn btn-default detail">Détail</button>
             </li>
         </ul>
         <br>
@@ -16,11 +13,8 @@
             <div data-title="total" class="tab-pane fade in active">
                 <spendings-total></spendings-total>
             </div>
-            <div data-title="dividing" class="tab-pane fade">
-                <spendings-dividing></spendings-dividing>
-            </div>
-            <div data-title="bilan" class="tab-pane fade">
-                <spendings-situation></spendings-situation>
+            <div data-title="detail" class="tab-pane fade">
+                <spendings-details></spendings-details>
             </div>
         </div>
     </div>

@@ -40,7 +40,6 @@
 	      	fetchData() {
                 axios.get('api/charts/spendings').then((response) => {
                     let lineCharts = this.$refs.lineCharts;
-                    console.log(lineCharts);
                     lineCharts.delegateMethod('update', {
                         xAxis: {
                             categories: response.data.categories

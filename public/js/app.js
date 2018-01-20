@@ -1665,16 +1665,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: {
         categories: {
             type: Array,
-            required: true,
-            default: function _default() {
-                return [];
-            }
+            required: true
         }
     },
-    mounted: function mounted() {
-        this.fetchData();
-    },
-
     methods: {
         fetchData: function fetchData() {
             this.$parent.fetchData();
@@ -1851,17 +1844,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: {
         users: {
             type: Array,
-            required: true,
-            default: function _default() {
-                return [];
-            }
+            required: true
         },
         categories: {
             type: Array,
-            required: true,
-            default: function _default() {
-                return [];
-            }
+            required: true
         }
     },
     data: function data() {
@@ -2029,7 +2016,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             month: 1,
-            year: 2017,
+            year: 2018,
             spendings: [],
             users: [],
             categories: []
@@ -2139,12 +2126,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     methods: {
@@ -2156,6 +2137,67 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             $('button.toggle-charts:not(.' + title + ')').removeClass('active');
         }
     }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/components/spendings/charts/SpendingsDetails.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+   data: function data() {
+      return {
+         month: '1',
+         year: '2018'
+      };
+   },
+   mounted: function mounted() {
+      var today = new Date();
+      this.month = (today.getMonth() + 1).toString();
+      this.year = today.getFullYear().toString();
+      this.fetchData();
+   },
+
+   methods: {
+      fetchData: function fetchData() {
+         this.$nextTick(function () {
+            this.$refs.spendingsDividing.fetchData();
+            this.$refs.spendingsSituation.fetchData();
+         });
+      }
+   }
 });
 
 /***/ }),
@@ -2173,37 +2215,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        year: {
+            type: String,
+            required: true
+        },
+        month: {
+            type: String,
+            required: true
+        }
+    },
     data: function data() {
         var _options;
 
         return {
-            month: 1,
-            year: 2017,
             options: (_options = {
                 title: { text: '' },
                 subtitle: { text: '' },
@@ -2231,12 +2258,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 }
             }), _defineProperty(_options, 'series', []), _options)
         };
-    },
-    mounted: function mounted() {
-        var today = new Date();
-        this.month = today.getMonth() + 1;
-        this.year = today.getFullYear();
-        this.fetchData();
     },
 
     methods: {
@@ -2291,39 +2312,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        year: {
+            type: String,
+            required: true
+        },
+        month: {
+            type: String,
+            required: true
+        }
+    },
     data: function data() {
         var _options;
 
         return {
             total: 0,
-            month: 1,
-            year: 2017,
             options: (_options = {
                 title: { text: '' },
                 subtitle: { text: '' },
@@ -2346,12 +2351,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 }
             }), _defineProperty(_options, 'series', []), _options)
         };
-    },
-    mounted: function mounted() {
-        var today = new Date();
-        this.month = today.getMonth() + 1;
-        this.year = today.getFullYear();
-        this.fetchData();
     },
 
     methods: {
@@ -2443,7 +2442,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.get('api/charts/spendings').then(function (response) {
                 var lineCharts = _this.$refs.lineCharts;
-                console.log(lineCharts);
                 lineCharts.delegateMethod('update', {
                     xAxis: {
                         categories: response.data.categories
@@ -2561,13 +2559,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: {
         user: {
             type: Object,
-            required: true,
-            default: function _default() {
-                return {
-                    name: '',
-                    email: ''
-                };
-            }
+            required: true
         }
     },
     data: function data() {
@@ -33565,110 +33557,6 @@ var render = function() {
   return _c(
     "div",
     [
-      _c(
-        "legend",
-        { staticStyle: { border: "none", "text-align": "center" } },
-        [
-          _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.month,
-                  expression: "month"
-                }
-              ],
-              staticStyle: { border: "none", outline: "none" },
-              on: {
-                change: [
-                  function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.month = $event.target.multiple
-                      ? $$selectedVal
-                      : $$selectedVal[0]
-                  },
-                  _vm.fetchData
-                ]
-              }
-            },
-            [
-              _c("option", { attrs: { value: "1" } }, [_vm._v("Janvier")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "2" } }, [_vm._v("Février")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "3" } }, [_vm._v("Mars")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "4" } }, [_vm._v("Avril")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "5" } }, [_vm._v("Mai")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "6" } }, [_vm._v("Juin")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "7" } }, [_vm._v("Juillet")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "8" } }, [_vm._v("Août")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "9" } }, [_vm._v("Septembre")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "10" } }, [_vm._v("Octobre")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "11" } }, [_vm._v("Novembre")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "12" } }, [_vm._v("Décembre")])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.year,
-                  expression: "year"
-                }
-              ],
-              staticStyle: { border: "none", outline: "none" },
-              on: {
-                change: [
-                  function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.year = $event.target.multiple
-                      ? $$selectedVal
-                      : $$selectedVal[0]
-                  },
-                  _vm.fetchData
-                ]
-              }
-            },
-            [
-              _c("option", { attrs: { value: "2017" } }, [_vm._v("2017")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "2018" } }, [_vm._v("2018")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "2019" } }, [_vm._v("2019")])
-            ]
-          )
-        ]
-      ),
-      _vm._v(" "),
       _c("vue-highcharts", {
         ref: "dividingChart",
         attrs: { options: _vm.options }
@@ -33699,110 +33587,6 @@ var render = function() {
   return _c(
     "div",
     [
-      _c(
-        "legend",
-        { staticStyle: { border: "none", "text-align": "center" } },
-        [
-          _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.month,
-                  expression: "month"
-                }
-              ],
-              staticStyle: { border: "none", outline: "none" },
-              on: {
-                change: [
-                  function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.month = $event.target.multiple
-                      ? $$selectedVal
-                      : $$selectedVal[0]
-                  },
-                  _vm.fetchData
-                ]
-              }
-            },
-            [
-              _c("option", { attrs: { value: "1" } }, [_vm._v("Janvier")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "2" } }, [_vm._v("Février")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "3" } }, [_vm._v("Mars")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "4" } }, [_vm._v("Avril")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "5" } }, [_vm._v("Mai")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "6" } }, [_vm._v("Juin")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "7" } }, [_vm._v("Juillet")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "8" } }, [_vm._v("Août")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "9" } }, [_vm._v("Septembre")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "10" } }, [_vm._v("Octobre")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "11" } }, [_vm._v("Novembre")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "12" } }, [_vm._v("Décembre")])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.year,
-                  expression: "year"
-                }
-              ],
-              staticStyle: { border: "none", outline: "none" },
-              on: {
-                change: [
-                  function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.year = $event.target.multiple
-                      ? $$selectedVal
-                      : $$selectedVal[0]
-                  },
-                  _vm.fetchData
-                ]
-              }
-            },
-            [
-              _c("option", { attrs: { value: "2017" } }, [_vm._v("2017")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "2018" } }, [_vm._v("2018")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "2019" } }, [_vm._v("2019")])
-            ]
-          )
-        ]
-      ),
-      _vm._v(" "),
       _c("vue-highcharts", {
         ref: "situationChart",
         attrs: { options: _vm.options }
@@ -34045,6 +33829,145 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-1722ca46\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/components/spendings/charts/SpendingsDetails.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "legend",
+        { staticStyle: { border: "none", "text-align": "center" } },
+        [
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.month,
+                  expression: "month"
+                }
+              ],
+              staticStyle: { border: "none", outline: "none" },
+              on: {
+                change: [
+                  function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.month = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  },
+                  _vm.fetchData
+                ]
+              }
+            },
+            [
+              _c("option", { attrs: { value: "1" } }, [_vm._v("Janvier")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "2" } }, [_vm._v("Février")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "3" } }, [_vm._v("Mars")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "4" } }, [_vm._v("Avril")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "5" } }, [_vm._v("Mai")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "6" } }, [_vm._v("Juin")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "7" } }, [_vm._v("Juillet")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "8" } }, [_vm._v("Août")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "9" } }, [_vm._v("Septembre")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "10" } }, [_vm._v("Octobre")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "11" } }, [_vm._v("Novembre")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "12" } }, [_vm._v("Décembre")])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.year,
+                  expression: "year"
+                }
+              ],
+              staticStyle: { border: "none", outline: "none" },
+              on: {
+                change: [
+                  function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.year = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  },
+                  _vm.fetchData
+                ]
+              }
+            },
+            [
+              _c("option", { attrs: { value: "2017" } }, [_vm._v("2017")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "2018" } }, [_vm._v("2018")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "2019" } }, [_vm._v("2019")])
+            ]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c("spendings-dividing", {
+        ref: "spendingsDividing",
+        attrs: { year: _vm.year, month: _vm.month }
+      }),
+      _vm._v(" "),
+      _c("spendings-situation", {
+        ref: "spendingsSituation",
+        attrs: { year: _vm.year, month: _vm.month }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1722ca46", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-1d7d1081\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/components/spendings/charts/SpendingsCharts.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -34073,29 +33996,14 @@ var render = function() {
         _c(
           "button",
           {
-            staticClass: "toggle-charts btn btn-default dividing",
+            staticClass: "toggle-charts btn btn-default detail",
             on: {
               click: function($event) {
-                _vm.toggleCharts("dividing")
+                _vm.toggleCharts("detail")
               }
             }
           },
-          [_vm._v("Répartition")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("li", [
-        _c(
-          "button",
-          {
-            staticClass: "toggle-charts btn btn-default bilan",
-            on: {
-              click: function($event) {
-                _vm.toggleCharts("bilan")
-              }
-            }
-          },
-          [_vm._v("Bilan")]
+          [_vm._v("Détail")]
         )
       ])
     ]),
@@ -34115,15 +34023,8 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "tab-pane fade", attrs: { "data-title": "dividing" } },
-        [_c("spendings-dividing")],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "tab-pane fade", attrs: { "data-title": "bilan" } },
-        [_c("spendings-situation")],
+        { staticClass: "tab-pane fade", attrs: { "data-title": "detail" } },
+        [_c("spendings-details")],
         1
       )
     ])
@@ -49197,6 +49098,7 @@ Vue.component('Spendings', __webpack_require__("./resources/assets/js/components
 Vue.component('SpendingCreate', __webpack_require__("./resources/assets/js/components/spendings/SpendingCreate.vue"));
 Vue.component('SpendingsCharts', __webpack_require__("./resources/assets/js/components/spendings/charts/SpendingsCharts.vue"));
 Vue.component('SpendingsTotal', __webpack_require__("./resources/assets/js/components/spendings/charts/SpendingsTotal.vue"));
+Vue.component('SpendingsDetails', __webpack_require__("./resources/assets/js/components/spendings/charts/SpendingsDetails.vue"));
 Vue.component('SpendingsDividing', __webpack_require__("./resources/assets/js/components/spendings/charts/SpendingsDividing.vue"));
 Vue.component('SpendingsSituation', __webpack_require__("./resources/assets/js/components/spendings/charts/SpendingsSituation.vue"));
 
@@ -49624,6 +49526,55 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-1d7d1081", Component.options)
   } else {
     hotAPI.reload("data-v-1d7d1081", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/spendings/charts/SpendingsDetails.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/components/spendings/charts/SpendingsDetails.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-1722ca46\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/components/spendings/charts/SpendingsDetails.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/spendings/charts/SpendingsDetails.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1722ca46", Component.options)
+  } else {
+    hotAPI.reload("data-v-1722ca46", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true

@@ -24,13 +24,7 @@
     	props: {
     		user: {
                 type: Object,
-                required: true,
-                default: function() {
-                    return {
-                        name: '',
-                        email: ''
-                    };
-                }
+                required: true
             }
     	},
         data() {

@@ -105,7 +105,7 @@
         data() {
             return {
                 month: 1,
-                year: 2017,
+                year: 2018,
                 spendings: [],
                 users: [],
                 categories: []
