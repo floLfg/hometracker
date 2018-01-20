@@ -120,10 +120,6 @@
                 this.users = response.data;
             });
 
-            axios.get('api/categories').then((response) => {
-                this.categories = response.data;
-            });
-
             this.fetchData();
         },
         methods: {
@@ -132,6 +128,10 @@
 
                 axios.get('api/spendings' + params).then((response) => {
                     this.spendings = response.data;
+                });
+
+                axios.get('api/categories').then((response) => {
+                    this.categories = response.data;
                 });
             },
             editSpending(spending) {

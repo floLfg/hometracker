@@ -40,9 +40,13 @@
 
 <script>
     export default {
-        data() {
-            return {
-                categories: []
+        props: {
+            categories: {
+                type: Array,
+                required: true,
+                default: function() {
+                    return [];
+                }
             }
         },
         mounted() {
@@ -50,9 +54,7 @@
         },
         methods: {
             fetchData () {
-                axios.get('api/categories').then((response) => {
-                    this.categories = response.data;
-                });
+                this.$parent.fetchData();
             },
             editCategory(category) {
                 if (! $(this.$refs['category-' + category.id]).hasClass('active')) {

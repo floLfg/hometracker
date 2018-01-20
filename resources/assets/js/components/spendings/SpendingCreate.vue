@@ -38,7 +38,7 @@
                         <h4 class="modal-title" id="myModalLabel">Catégories</h4>
                     </div>
                     <div class="modal-body">
-                        <categories></categories>
+                        <categories :categories="categories"></categories>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
@@ -81,6 +81,9 @@
             };   
         },
         methods: {
+            fetchData () {
+                this.$parent.fetchData();
+            },
             storeSpending(spending) {
                 $('.spending').removeClass('active');
                 axios.post('api/spendings', spending).then((response) => {
