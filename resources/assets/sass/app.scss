@@ -365,17 +365,6 @@ td.small {
 			}
 		}
 	}
-	tbody {
-		tr {
-			&:nth-child(2n) {
-				background-color: $main_light;
-			}
-
-			&:hover td {
-				background-color: $light_grey !important;
-			}
-		}
-	}
 }
 
 table .btn-delete {
