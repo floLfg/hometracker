@@ -21,7 +21,7 @@
           			},
           			yAxis: {
             			title: {
-             				text: 'Dépenses'
+             				text: ''
             			},
             			labels: {
               				formatter: function () {
@@ -48,7 +48,8 @@
                     let serie = {
                         name: 'Dépenses',
                         marker: {symbol: 'circle'},
-                        data: response.data.data
+                        data: response.data.data,
+                        color: '#7badc1'
                     };
                     
                     lineCharts.removeSeries();

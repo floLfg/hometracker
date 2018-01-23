@@ -1,12 +1,12 @@
 <template>
     <div>
-        <legend>Membres</legend>
-        
         <div class="flex-container center">
             <user-show v-for="user in users" :user="user" :key="user.id"></user-show>
         </div>
-        <br>
-        <user-create></user-create>
+
+        <div class="flex-container center">
+            <user-create></user-create>
+        </div>
     </div>
 </template>
 

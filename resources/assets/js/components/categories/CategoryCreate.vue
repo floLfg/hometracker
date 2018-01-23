@@ -1,9 +1,9 @@
 <template>
-    <form v-on:submit.prevent="storeCategory(category)" class="form-inline">
+    <form v-on:submit.prevent="storeCategory(category)" class="flex-container">
         
         <input type="text" ref="title" name="title" v-model="category.title" class="form-control" placeholder="Titre ...">
 
-        <input type="color" ref="color" name="color" v-model="category.color" class="form-control" placeholder="Couleur ...">
+        <input type="color" ref="color" name="color" v-model="category.color" class="form-control" placeholder="Couleur ..." style="width: 100px">
                     
         <button type="submit" class="btn btn-primary">Ajouter</button>
                     
@@ -16,7 +16,7 @@
             return {
                 category: {
                     'title': '',
-                    'color': '#ffffff'
+                    'color': '#92cae0'
                 }
             };   
         },
@@ -28,7 +28,7 @@
                     this.$root.$refs.toastr.s('Catégorie ajoutée');
                     this.category = {
                         'title': '',
-                        'color': '#ffffff'
+                        'color': '#92cae0'
                     };
                     this.$nextTick(() => this.$refs.title.focus());
                 }).catch(error => {

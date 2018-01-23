@@ -1,13 +1,13 @@
 <template>
-	<div class="blue-box">
-        <form v-on:submit.prevent="storeUser(user)" style="display: flex;">
+	<div class="blue-box user-show user-create">
+        <form v-on:submit.prevent="storeUser(user)">
 
-            <input type="text" ref="name" name="name" v-model="user.name" class="form-control" placeholder= "Nom ..." style="flex: 0 1 100%;margin: 0 5px;">
-            <input type="text" ref="email" name="email" v-model="user.email" class="form-control" placeholder="Email ..." style="flex: 0 1 100%;margin: 0 5px;">
-            <input type="color" ref="color" name="color" v-model="user.color" class="form-control" style="flex: 0 1 100%;margin: 0 5px;">
-            <input type="password" ref="password" name="password" v-model="user.password" class="form-control" placeholder="Mot de passe ...">
+            <input type="text" ref="name" name="name" v-model="user.name" class="form-control" placeholder= "Nom ..." autocomplete="new-password">
+            <input type="text" ref="email" name="email" v-model="user.email" class="form-control" placeholder="Email ..." autocomplete="new-password">
+            <input type="color" ref="color" name="color" v-model="user.color" class="form-control" autocomplete="new-password">
+            <input type="password" ref="password" name="password" v-model="user.password" class="form-control" placeholder="Mot de passe ..." autocomplete="new-password">
 
-            <button type="submit" class="btn btn-primary">Ajouter</button>
+            <button type="submit" class="btn btn-primary form-control">Ajouter</button>
         </form>
 	</div>
 </template>
@@ -20,7 +20,7 @@
                     name: '',
                     email: '',
                     password: '',
-                    color: '#eeeeee'
+                    color: '#92cae0'
                 }
             };   
         },

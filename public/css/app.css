@@ -7722,21 +7722,128 @@ button.close {
 }
 
 body {
-  background-color: #f9f9f9;
+  background-color: #f7f7f7;
+}
+
+body * {
+  letter-spacing: 1px;
+}
+
+form.flex-container input, form.flex-container select, form.flex-container button {
+  margin-right: 5px;
+}
+
+form.flex-container input:last-child, form.flex-container select:last-child, form.flex-container button:last-child {
+  margin-right: 0;
 }
 
 .table-striped > tbody > tr:nth-of-type(odd) {
-  background-color: #fff;
+  background-color: #ffffff;
 }
 
 button {
   outline: none !important;
 }
 
+.panel-default {
+  border-color: #3d4440;
+  margin-top: 30px;
+}
+
+.panel-default > .panel-heading {
+  background-color: #3d4440;
+  color: #92cae0;
+}
+
+.nav-pills {
+  border-bottom: 2px solid #7badc1;
+}
+
+.nav-pills li {
+  margin: 0 !important;
+}
+
+.nav-pills li button {
+  border-radius: 0;
+  border-width: 2px;
+  border-bottom: none;
+  color: #3d4440;
+  cursor: pointer;
+}
+
+.nav-pills li button.active {
+  border-color: #7badc1 !important;
+  background-color: #7badc1 !important;
+}
+
+.nav-pills li:first-child button {
+  border-top-left-radius: 2px;
+  border-right: 0;
+}
+
+.nav-pills li + li button {
+  border-top-right-radius: 4px;
+  border-left: 0;
+}
+
+.navbar-default {
+  background-color: #bdc3c7;
+}
+
+.navbar-default .navbar-header a {
+  color: #707371;
+}
+
+.btn-primary {
+  background-color: #92cae0;
+  border: 2px solid #3d4440 !important;
+  color: #3d4440 !important;
+  font-size: 14px;
+  border-radius: 3px;
+}
+
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+  background-color: #7badc1;
+}
+
+.btn-link {
+  color: #92cae0;
+}
+
+.btn-link:hover, .btn-link:active, .btn-link:focus {
+  color: #7badc1;
+}
+
+.front-select {
+  background-color: #ccc;
+  color: #3d4440;
+  border: none;
+  outline: none;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 5px 30px 5px 10px;
+  border-radius: 3px;
+  background-image: url(../img/arrow-down.png);
+  background-size: 25px;
+  background-repeat: no-repeat;
+  background-position: calc(100% - 5px) 50%;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+  -webkit-text-fill-color: #000000 !important;
+}
+
 legend {
   font-family: Lobster;
-  color: #7ba7ce;
-  border-color: #7ba7ce;
+  color: #7badc1;
+  border-color: #7badc1;
+  border-width: 3px;
   font-size: 24px;
 }
 
@@ -7760,7 +7867,7 @@ legend button {
 }
 
 .page-content {
-  width: calc(100% - $menuWidth);
+  width: calc(100% - $menu_width);
   margin-left: 250px;
   padding: 50px;
 }
@@ -7803,7 +7910,6 @@ td.small {
   z-index: 1000;
   top: 0;
   left: 0;
-  border-right: 1px solid #7ba7ce;
   background-color: rgba(255, 255, 255, 0.9);
   display: -webkit-box;
   display: -ms-flexbox;
@@ -7822,61 +7928,133 @@ td.small {
   transition: all 0.25s;
   overflow: hidden;
   width: 250px;
+  border-right: 4px solid #3d4440;
+  overflow: visible;
 }
 
 .menu.active {
   left: calc(50% - 400px/2);
   width: 400px;
-  border-left: 1px solid #7ba7ce;
+  border-left: 4px solid #3d4440;
 }
 
 .menu a {
   width: 100%;
-  color: #7ba7ce;
+  color: #92cae0;
   padding: 20px;
   font-size: 22px;
   font-family: Lobster;
   text-align: center;
   text-decoration: none !important;
-  border-top: 1px solid rgba(255, 255, 255, 0);
-  border-bottom: 1px solid rgba(255, 255, 255, 0);
   -webkit-transition: all 0.25s;
   transition: all 0.25s;
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+  position: relative;
 }
 
 .menu a:hover, .menu a.active {
-  color: #337ab7;
-  border-color: #337ab7;
-  background-color: #fff;
+  color: #92cae0;
+  background-color: #3d4440;
+  border-color: #eee;
 }
 
 .menu a:hover + a:hover,
 .menu a:hover + a.active, .menu a.active + a:hover,
 .menu a.active + a.active {
-  border-top-color: rgba(255, 255, 255, 0);
+  border-top-color: transparent;
+}
+
+.menu:not(.active) a.active:after {
+  content: "";
+  display: block;
+  width: 0px;
+  height: 0px;
+  border-top: 37px solid transparent;
+  border-bottom: 37px solid transparent;
+  border-left: 37px solid #3d4440;
+  position: absolute;
+  right: -40px;
+  top: calc(50% - 38px + 2px);
 }
 
 .blue-box {
   padding: 30px;
-  border: 1px solid #7ba7ce;
-  border-radius: 5px;
-  background-color: #fff;
+  border: 1px solid #7badc1;
+  border-radius: 3px;
+  background-color: #ffffff;
   cursor: pointer;
 }
 
 .user-show {
   margin: 10px;
+  position: relative;
+  border-width: 2px;
+  padding-bottom: 15px;
 }
 
 .user-show .name {
   text-align: center;
   font-size: 18px;
-  color: #337ab7;
+  color: #7badc1;
+  margin-bottom: 0;
 }
 
-.user-show:hover {
-  background-color: #fdfdfd;
-  border-color: #337ab7;
+.user-show .edit-label {
+  opacity: 0;
+  -webkit-transition: opacity 0.2s;
+  transition: opacity 0.2s;
+  position: absolute;
+  padding: 5px;
+  width: 100%;
+  left: 0;
+  top: 0;
+  text-align: right;
+}
+
+.user-show:hover .edit-label {
+  opacity: 1;
+}
+
+.user-show .avatar {
+  display: block;
+  height: 100px;
+  width: 100px;
+  padding: 25px;
+  margin: 10px auto 10px auto;
+  border-radius: 100%;
+  text-align: center;
+}
+
+.user-show .avatar img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.user-show .btn-delete,
+.user-show button[type=submit] {
+  position: absolute;
+  width: 100px;
+  left: calc(50% - 50px);
+}
+
+.user-show button[type=submit] {
+  bottom: -40px;
+}
+
+.user-show .btn-delete {
+  top: -25px;
+}
+
+.user-create {
+  width: 300px;
+  margin-top: 40px;
+  background-color: #707371;
+  border-color: transparent;
+}
+
+.user-create input {
+  margin-bottom: 10px;
 }
 
 .btn-delete {
@@ -7889,13 +8067,21 @@ td.small {
 }
 
 .btn-delete:hover {
-  color: #A00;
+  color: #c0392b;
 }
 
-.blue-box .btn-delete {
-  float: right;
-  margin-top: -20px;
-  margin-right: -20px;
+.table-striped thead tr th {
+  border-width: 3px;
+  color: #3d4440;
+  border-color: #707371;
+}
+
+.table-striped tbody tr:nth-child(2n) {
+  background-color: #e6f3f9;
+}
+
+.table-striped tbody tr:hover td {
+  background-color: #eee !important;
 }
 
 table .btn-delete {

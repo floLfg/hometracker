@@ -1744,7 +1744,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             category: {
                 'title': '',
-                'color': '#ffffff'
+                'color': '#92cae0'
             }
         };
     },
@@ -1759,7 +1759,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.$root.$refs.toastr.s('Catégorie ajoutée');
                 _this.category = {
                     'title': '',
-                    'color': '#ffffff'
+                    'color': '#92cae0'
                 };
                 _this.$nextTick(function () {
                     return _this.$refs.title.focus();
@@ -2010,7 +2010,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -2146,8 +2145,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
 //
 //
 //
@@ -2420,7 +2417,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 },
                 yAxis: {
                     title: {
-                        text: 'Dépenses'
+                        text: ''
                     },
                     labels: {
                         formatter: function formatter() {
@@ -2450,7 +2447,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 var serie = {
                     name: 'Dépenses',
                     marker: { symbol: 'circle' },
-                    data: response.data.data
+                    data: response.data.data,
+                    color: '#7badc1'
                 };
 
                 lineCharts.removeSeries();
@@ -2493,7 +2491,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 name: '',
                 email: '',
                 password: '',
-                color: '#eeeeee'
+                color: '#92cae0'
             }
         };
     },
@@ -2533,6 +2531,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
 //
 //
 //
@@ -33840,106 +33843,100 @@ var render = function() {
     "div",
     [
       _c(
-        "legend",
-        { staticStyle: { border: "none", "text-align": "center" } },
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.month,
+              expression: "month"
+            }
+          ],
+          staticClass: "front-select",
+          on: {
+            change: [
+              function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.month = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
+              _vm.fetchData
+            ]
+          }
+        },
         [
-          _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.month,
-                  expression: "month"
-                }
-              ],
-              staticStyle: { border: "none", outline: "none" },
-              on: {
-                change: [
-                  function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.month = $event.target.multiple
-                      ? $$selectedVal
-                      : $$selectedVal[0]
-                  },
-                  _vm.fetchData
-                ]
-              }
-            },
-            [
-              _c("option", { attrs: { value: "1" } }, [_vm._v("Janvier")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "2" } }, [_vm._v("Février")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "3" } }, [_vm._v("Mars")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "4" } }, [_vm._v("Avril")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "5" } }, [_vm._v("Mai")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "6" } }, [_vm._v("Juin")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "7" } }, [_vm._v("Juillet")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "8" } }, [_vm._v("Août")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "9" } }, [_vm._v("Septembre")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "10" } }, [_vm._v("Octobre")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "11" } }, [_vm._v("Novembre")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "12" } }, [_vm._v("Décembre")])
-            ]
-          ),
+          _c("option", { attrs: { value: "1" } }, [_vm._v("Janvier")]),
           _vm._v(" "),
-          _c(
-            "select",
+          _c("option", { attrs: { value: "2" } }, [_vm._v("Février")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "3" } }, [_vm._v("Mars")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "4" } }, [_vm._v("Avril")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "5" } }, [_vm._v("Mai")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "6" } }, [_vm._v("Juin")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "7" } }, [_vm._v("Juillet")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "8" } }, [_vm._v("Août")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "9" } }, [_vm._v("Septembre")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "10" } }, [_vm._v("Octobre")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "11" } }, [_vm._v("Novembre")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "12" } }, [_vm._v("Décembre")])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          directives: [
             {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.year,
-                  expression: "year"
-                }
-              ],
-              staticStyle: { border: "none", outline: "none" },
-              on: {
-                change: [
-                  function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.year = $event.target.multiple
-                      ? $$selectedVal
-                      : $$selectedVal[0]
-                  },
-                  _vm.fetchData
-                ]
-              }
-            },
-            [
-              _c("option", { attrs: { value: "2017" } }, [_vm._v("2017")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "2018" } }, [_vm._v("2018")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "2019" } }, [_vm._v("2019")])
+              name: "model",
+              rawName: "v-model",
+              value: _vm.year,
+              expression: "year"
+            }
+          ],
+          staticClass: "front-select",
+          on: {
+            change: [
+              function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.year = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
+              _vm.fetchData
             ]
-          )
+          }
+        },
+        [
+          _c("option", { attrs: { value: "2017" } }, [_vm._v("2017")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "2018" } }, [_vm._v("2018")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "2019" } }, [_vm._v("2019")])
         ]
       ),
       _vm._v(" "),
@@ -34113,25 +34110,17 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("legend", [_vm._v("Membres")]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "flex-container center" },
-        _vm._l(_vm.users, function(user) {
-          return _c("user-show", { key: user.id, attrs: { user: user } })
-        })
-      ),
-      _vm._v(" "),
-      _c("br"),
-      _vm._v(" "),
-      _c("user-create")
-    ],
-    1
-  )
+  return _c("div", [
+    _c(
+      "div",
+      { staticClass: "flex-container center" },
+      _vm._l(_vm.users, function(user) {
+        return _c("user-show", { key: user.id, attrs: { user: user } })
+      })
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "flex-container center" }, [_c("user-create")], 1)
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -34156,7 +34145,6 @@ var render = function() {
     "div",
     {
       staticClass: "blue-box user-show",
-      staticStyle: { "border-bottom": "30px solid", "padding-bottom": "15px" },
       style: "border-color:" + _vm.user.color,
       on: {
         click: function($event) {
@@ -34178,6 +34166,20 @@ var render = function() {
           ]
         },
         [
+          _c(
+            "button",
+            {
+              staticClass: "btn-delete",
+              on: {
+                click: function($event) {
+                  $event.stopPropagation()
+                  _vm.deleteUser(_vm.item)
+                }
+              }
+            },
+            [_vm._v("Supprimer")]
+          ),
+          _vm._v(" "),
           _c(
             "form",
             {
@@ -34266,15 +34268,7 @@ var render = function() {
               _c(
                 "button",
                 {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: false,
-                      expression: "false"
-                    }
-                  ],
-                  staticClass: "btn btn-primary",
+                  staticClass: "btn btn-primary form-control",
                   attrs: { type: "submit" }
                 },
                 [_vm._v("Enregistrer")]
@@ -34297,29 +34291,35 @@ var render = function() {
           ]
         },
         [
+          _vm._m(0),
+          _vm._v(" "),
           _c(
-            "button",
+            "div",
             {
-              staticClass: "btn-delete",
-              on: {
-                click: function($event) {
-                  $event.stopPropagation()
-                  _vm.deleteUser(_vm.item)
-                }
-              }
+              staticClass: "avatar",
+              style: "background-color:" + _vm.user.color
             },
-            [_vm._v("X")]
+            [_c("img", { attrs: { src: "/img/avatar.png" } })]
           ),
           _vm._v(" "),
-          _c("p", { staticClass: "name" }, [_vm._v(_vm._s(_vm.item.name))]),
-          _vm._v(" "),
-          _c("p", { staticClass: "email" }, [_vm._v(_vm._s(_vm.item.email))])
+          _c("p", { staticClass: "name", style: "color:" + _vm.user.color }, [
+            _vm._v(_vm._s(_vm.item.name))
+          ])
         ]
       )
     ]
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "edit-label" }, [
+      _c("img", { attrs: { height: "20", src: "/img/edit-icon.png" } })
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -34338,11 +34338,10 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "blue-box" }, [
+  return _c("div", { staticClass: "blue-box user-show user-create" }, [
     _c(
       "form",
       {
-        staticStyle: { display: "flex" },
         on: {
           submit: function($event) {
             $event.preventDefault()
@@ -34362,8 +34361,12 @@ var render = function() {
           ],
           ref: "name",
           staticClass: "form-control",
-          staticStyle: { flex: "0 1 100%", margin: "0 5px" },
-          attrs: { type: "text", name: "name", placeholder: "Nom ..." },
+          attrs: {
+            type: "text",
+            name: "name",
+            placeholder: "Nom ...",
+            autocomplete: "new-password"
+          },
           domProps: { value: _vm.user.name },
           on: {
             input: function($event) {
@@ -34386,8 +34389,12 @@ var render = function() {
           ],
           ref: "email",
           staticClass: "form-control",
-          staticStyle: { flex: "0 1 100%", margin: "0 5px" },
-          attrs: { type: "text", name: "email", placeholder: "Email ..." },
+          attrs: {
+            type: "text",
+            name: "email",
+            placeholder: "Email ...",
+            autocomplete: "new-password"
+          },
           domProps: { value: _vm.user.email },
           on: {
             input: function($event) {
@@ -34410,8 +34417,7 @@ var render = function() {
           ],
           ref: "color",
           staticClass: "form-control",
-          staticStyle: { flex: "0 1 100%", margin: "0 5px" },
-          attrs: { type: "color", name: "color" },
+          attrs: { type: "color", name: "color", autocomplete: "new-password" },
           domProps: { value: _vm.user.color },
           on: {
             input: function($event) {
@@ -34437,7 +34443,8 @@ var render = function() {
           attrs: {
             type: "password",
             name: "password",
-            placeholder: "Mot de passe ..."
+            placeholder: "Mot de passe ...",
+            autocomplete: "new-password"
           },
           domProps: { value: _vm.user.password },
           on: {
@@ -34452,7 +34459,10 @@ var render = function() {
         _vm._v(" "),
         _c(
           "button",
-          { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+          {
+            staticClass: "btn btn-primary form-control",
+            attrs: { type: "submit" }
+          },
           [_vm._v("Ajouter")]
         )
       ]
@@ -34481,7 +34491,7 @@ var render = function() {
   return _c(
     "form",
     {
-      staticClass: "form-inline",
+      staticClass: "flex-container",
       on: {
         submit: function($event) {
           $event.preventDefault()
@@ -34524,6 +34534,7 @@ var render = function() {
         ],
         ref: "color",
         staticClass: "form-control",
+        staticStyle: { width: "100px" },
         attrs: { type: "color", name: "color", placeholder: "Couleur ..." },
         domProps: { value: _vm.category.color },
         on: {
@@ -34594,105 +34605,103 @@ var render = function() {
       _c("br"),
       _c("br"),
       _vm._v(" "),
-      _c("legend", { staticStyle: { "padding-bottom": "5px" } }, [
-        _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.month,
-                expression: "month"
-              }
-            ],
-            staticStyle: { border: "none", outline: "none" },
-            on: {
-              change: [
-                function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.month = $event.target.multiple
-                    ? $$selectedVal
-                    : $$selectedVal[0]
-                },
-                _vm.fetchData
-              ]
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.month,
+              expression: "month"
             }
-          },
-          [
-            _c("option", { attrs: { value: "1" } }, [_vm._v("Janvier")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "2" } }, [_vm._v("Février")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "3" } }, [_vm._v("Mars")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "4" } }, [_vm._v("Avril")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "5" } }, [_vm._v("Mai")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "6" } }, [_vm._v("Juin")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "7" } }, [_vm._v("Juillet")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "8" } }, [_vm._v("Août")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "9" } }, [_vm._v("Septembre")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "10" } }, [_vm._v("Octobre")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "11" } }, [_vm._v("Novembre")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "12" } }, [_vm._v("Décembre")])
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.year,
-                expression: "year"
-              }
-            ],
-            staticStyle: { border: "none", outline: "none" },
-            on: {
-              change: [
-                function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.year = $event.target.multiple
-                    ? $$selectedVal
-                    : $$selectedVal[0]
-                },
-                _vm.fetchData
-              ]
+          ],
+          staticClass: "front-select",
+          on: {
+            change: [
+              function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.month = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
+              _vm.fetchData
+            ]
+          }
+        },
+        [
+          _c("option", { attrs: { value: "1" } }, [_vm._v("Janvier")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "2" } }, [_vm._v("Février")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "3" } }, [_vm._v("Mars")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "4" } }, [_vm._v("Avril")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "5" } }, [_vm._v("Mai")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "6" } }, [_vm._v("Juin")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "7" } }, [_vm._v("Juillet")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "8" } }, [_vm._v("Août")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "9" } }, [_vm._v("Septembre")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "10" } }, [_vm._v("Octobre")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "11" } }, [_vm._v("Novembre")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "12" } }, [_vm._v("Décembre")])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.year,
+              expression: "year"
             }
-          },
-          [
-            _c("option", { attrs: { value: "2017" } }, [_vm._v("2017")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "2018" } }, [_vm._v("2018")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "2019" } }, [_vm._v("2019")])
-          ]
-        )
-      ]),
+          ],
+          staticClass: "front-select",
+          on: {
+            change: [
+              function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.year = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
+              _vm.fetchData
+            ]
+          }
+        },
+        [
+          _c("option", { attrs: { value: "2017" } }, [_vm._v("2017")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "2018" } }, [_vm._v("2018")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "2019" } }, [_vm._v("2019")])
+        ]
+      ),
       _vm._v(" "),
       _c("table", { staticClass: "table table-striped table-selectable" }, [
         _vm._m(0),
@@ -35085,7 +35094,7 @@ var render = function() {
     _c(
       "form",
       {
-        staticClass: "form-inline",
+        staticClass: "flex-container",
         on: {
           submit: function($event) {
             $event.preventDefault()
@@ -35105,6 +35114,7 @@ var render = function() {
           ],
           ref: "date",
           staticClass: "form-control",
+          staticStyle: { flex: "1 100%" },
           attrs: { type: "date", name: "date" },
           domProps: { value: _vm.spending.date },
           on: {
@@ -35267,7 +35277,11 @@ var render = function() {
         _vm._v(" "),
         _c(
           "button",
-          { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+          {
+            staticClass: "btn btn-primary",
+            staticStyle: { "margin-top": "-1px" },
+            attrs: { type: "submit" }
+          },
           [_vm._v("Ajouter")]
         )
       ]

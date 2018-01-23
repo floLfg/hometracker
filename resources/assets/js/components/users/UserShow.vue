@@ -1,22 +1,27 @@
 <template>
-	<div class="blue-box user-show" v-on:click="editUser(item)" style="border-bottom: 30px solid;padding-bottom: 15px;" :style="'border-color:'+user.color">
+	<div class="blue-box user-show" v-on:click="editUser(item)" :style="'border-color:'+user.color">
         <div v-show="editing">
+            <button class="btn-delete" v-on:click.stop="deleteUser(item)">Supprimer</button>
             <form v-on:submit.prevent="updateUser(item)" v-bind:id="'form-user-' + item.id">
                 <input type="text" ref="name" name="name" v-model="item.name" class="form-control">
                 <br>
                 <input type="text" ref="email" name="email" v-model="item.email" class="form-control">
                 <br>
                 <input type="color" ref="color" name="color" v-model="user.color" class="form-control">
-                <button v-show="false" type="submit" class="btn btn-primary">Enregistrer</button>
+                <button type="submit" class="btn btn-primary form-control">Enregistrer</button>
             </form>
         </div>
 
         <div v-show="! editing">
-            <button class="btn-delete" v-on:click.stop="deleteUser(item)">X</button>
-            <p class="name">{{ item.name }}</p>
-            <p class="email">{{ item.email }}</p>
+            <p class="edit-label">
+                <img height="20" src="/img/edit-icon.png">
+            </p>
+            <div class="avatar" :style="'background-color:'+user.color">
+                <img src="/img/avatar.png">
+            </div>
+            <p class="name" :style="'color:'+user.color">{{ item.name }}</p>
         </div>
-	</div>
+    </div>
 </template>
 
 <script>

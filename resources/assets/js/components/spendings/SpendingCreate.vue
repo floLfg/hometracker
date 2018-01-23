@@ -6,8 +6,8 @@
                 Gérer mes catégories
             </button>
         </legend>
-        <form v-on:submit.prevent="storeSpending(spending)" class="form-inline">
-            <input type="date" ref="date" name="date" v-model="spending.date" class="form-control">                
+        <form v-on:submit.prevent="storeSpending(spending)" class="flex-container">
+            <input type="date" ref="date" name="date" v-model="spending.date" class="form-control" style="flex: 1 100%;">                
        
             <select class="form-control" v-model="spending.user_id" autocomplete="false">
                 <option value="" selected>Membre associé</option>
@@ -27,7 +27,7 @@
        
             <input type="text" ref="label" name="label" v-model="spending.label" class="form-control" placeholder="Détail ...">
 
-            <button type="submit" class="btn btn-primary">Ajouter</button>
+            <button type="submit" class="btn btn-primary" style="margin-top: -1px;">Ajouter</button>
         </form>
 
         <div class="modal fade categoriesModal" tabindex="-1" role="dialog">
