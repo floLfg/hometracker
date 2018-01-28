@@ -92,6 +92,8 @@
                     </td>
                     <td style="text-align:right;">
                         <button class="btn-delete on-non-active" v-on:click.stop="deleteSpending(spending)">x</button>
+
+                        <button class="btn-primary on-active" v-on:click.stop="updateSpending(spending)" style="margin-top: 4px;">✓</button>
                     </td>
                 </tr>
             </tbody>

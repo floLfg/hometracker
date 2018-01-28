@@ -1,7 +1,6 @@
 <template>
-    <div>
+    <div style="margin-top: -30px;">
         <vue-highcharts :options="options" ref="situationChart"></vue-highcharts>
-        <h4 style="text-align: center;">Total : {{ total.toFixed(2) }} €</h4>
 	</div>
 </template>
 
@@ -30,7 +29,7 @@
                     exporting: {enabled: false},
                     chart: {
                         type: 'pie',
-                        height: 300
+                        width: 380
                     },
                     tooltip: {
                         pointFormat: 'Part : <b>{point.percentage:.1f}%</b><br>Total : <b>{point.y} €</b>'

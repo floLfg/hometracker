@@ -28,7 +28,7 @@
                     exporting: {enabled: false},
                     chart: {
                         type: 'pie',
-                        height: 250
+                        width: 400
                     },
                     tooltip: {
                         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b><br>Total: <b>{point.y} €</b>'
@@ -56,7 +56,7 @@
                     let series = {
                         name: 'Dépenses',
                         colorByPoint: true,
-                        innerSize: '50%',
+                        innerSize: '60%',
                         data: []
                     };
 

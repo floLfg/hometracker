@@ -30,7 +30,7 @@
                     </td>
                     <td style="text-align:right;">
                         <button class="btn-delete on-non-active" v-on:click.stop="deleteCategory(category)">x</button>
-                        <button class="btn btn-primary on-active" v-on:click.stop="updateCategory(category)">Enregistrer</button>
+                        <button class="btn btn-primary on-active" v-on:click.stop="updateCategory(category)">✓</button>
                     </td>
                 </tr>
             </tbody>

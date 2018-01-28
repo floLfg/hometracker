@@ -14,7 +14,7 @@
                 <spendings-total></spendings-total>
             </div>
             <div data-title="detail" class="tab-pane fade">
-                <spendings-details></spendings-details>
+                <spendings-details ref="spendingsDetails"></spendings-details>
             </div>
         </div>
     </div>

@@ -20,8 +20,10 @@
             <option value="2019">2019</option>
         </select>
 
-		<spendings-dividing :year="year" :month="month" ref="spendingsDividing"></spendings-dividing>
-		<spendings-situation :year="year" :month="month" ref="spendingsSituation"></spendings-situation>
+        <div class="flex-container center">
+            <spendings-dividing :year="year" :month="month" ref="spendingsDividing"></spendings-dividing>  
+            <spendings-situation :year="year" :month="month" ref="spendingsSituation"></spendings-situation>  
+        </div>
 	</div>
 </template>
 

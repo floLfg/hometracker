@@ -2010,6 +2010,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -2172,6 +2174,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
    data: function data() {
@@ -2238,7 +2242,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 exporting: { enabled: false },
                 chart: {
                     type: 'pie',
-                    height: 250
+                    width: 400
                 }
             }, _defineProperty(_options, 'tooltip', {
                 pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b><br>Total: <b>{point.y} €</b>'
@@ -2266,7 +2270,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 var series = {
                     name: 'Dépenses',
                     colorByPoint: true,
-                    innerSize: '50%',
+                    innerSize: '60%',
                     data: []
                 };
 
@@ -2308,7 +2312,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -2336,7 +2339,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 exporting: { enabled: false },
                 chart: {
                     type: 'pie',
-                    height: 300
+                    width: 380
                 }
             }, _defineProperty(_options, 'tooltip', {
                 pointFormat: 'Part : <b>{point.percentage:.1f}%</b><br>Total : <b>{point.y} €</b>'
@@ -33589,15 +33592,12 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticStyle: { "margin-top": "-30px" } },
     [
       _c("vue-highcharts", {
         ref: "situationChart",
         attrs: { options: _vm.options }
-      }),
-      _vm._v(" "),
-      _c("h4", { staticStyle: { "text-align": "center" } }, [
-        _vm._v("Total : " + _vm._s(_vm.total.toFixed(2)) + " €")
-      ])
+      })
     ],
     1
   )
@@ -33763,7 +33763,7 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("Enregistrer")]
+                    [_vm._v("✓")]
                   )
                 ])
               ]
@@ -33839,119 +33839,122 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "select",
-        {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.month,
-              expression: "month"
-            }
-          ],
-          staticClass: "front-select",
-          on: {
-            change: [
-              function($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function(o) {
-                    return o.selected
-                  })
-                  .map(function(o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.month = $event.target.multiple
-                  ? $$selectedVal
-                  : $$selectedVal[0]
-              },
-              _vm.fetchData
-            ]
+  return _c("div", [
+    _c(
+      "select",
+      {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.month,
+            expression: "month"
           }
-        },
-        [
-          _c("option", { attrs: { value: "1" } }, [_vm._v("Janvier")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "2" } }, [_vm._v("Février")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "3" } }, [_vm._v("Mars")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "4" } }, [_vm._v("Avril")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "5" } }, [_vm._v("Mai")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "6" } }, [_vm._v("Juin")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "7" } }, [_vm._v("Juillet")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "8" } }, [_vm._v("Août")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "9" } }, [_vm._v("Septembre")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "10" } }, [_vm._v("Octobre")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "11" } }, [_vm._v("Novembre")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "12" } }, [_vm._v("Décembre")])
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "select",
-        {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.year,
-              expression: "year"
-            }
-          ],
-          staticClass: "front-select",
-          on: {
-            change: [
-              function($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function(o) {
-                    return o.selected
-                  })
-                  .map(function(o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.year = $event.target.multiple
-                  ? $$selectedVal
-                  : $$selectedVal[0]
-              },
-              _vm.fetchData
-            ]
+        ],
+        staticClass: "front-select",
+        on: {
+          change: [
+            function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.month = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
+            },
+            _vm.fetchData
+          ]
+        }
+      },
+      [
+        _c("option", { attrs: { value: "1" } }, [_vm._v("Janvier")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "2" } }, [_vm._v("Février")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "3" } }, [_vm._v("Mars")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "4" } }, [_vm._v("Avril")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "5" } }, [_vm._v("Mai")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "6" } }, [_vm._v("Juin")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "7" } }, [_vm._v("Juillet")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "8" } }, [_vm._v("Août")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "9" } }, [_vm._v("Septembre")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "10" } }, [_vm._v("Octobre")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "11" } }, [_vm._v("Novembre")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "12" } }, [_vm._v("Décembre")])
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "select",
+      {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.year,
+            expression: "year"
           }
-        },
-        [
-          _c("option", { attrs: { value: "2017" } }, [_vm._v("2017")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "2018" } }, [_vm._v("2018")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "2019" } }, [_vm._v("2019")])
-        ]
-      ),
-      _vm._v(" "),
-      _c("spendings-dividing", {
-        ref: "spendingsDividing",
-        attrs: { year: _vm.year, month: _vm.month }
-      }),
-      _vm._v(" "),
-      _c("spendings-situation", {
-        ref: "spendingsSituation",
-        attrs: { year: _vm.year, month: _vm.month }
-      })
-    ],
-    1
-  )
+        ],
+        staticClass: "front-select",
+        on: {
+          change: [
+            function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.year = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
+            },
+            _vm.fetchData
+          ]
+        }
+      },
+      [
+        _c("option", { attrs: { value: "2017" } }, [_vm._v("2017")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "2018" } }, [_vm._v("2018")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "2019" } }, [_vm._v("2019")])
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "flex-container center" },
+      [
+        _c("spendings-dividing", {
+          ref: "spendingsDividing",
+          attrs: { year: _vm.year, month: _vm.month }
+        }),
+        _vm._v(" "),
+        _c("spendings-situation", {
+          ref: "spendingsSituation",
+          attrs: { year: _vm.year, month: _vm.month }
+        })
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -34021,7 +34024,7 @@ var render = function() {
       _c(
         "div",
         { staticClass: "tab-pane fade", attrs: { "data-title": "detail" } },
-        [_c("spendings-details")],
+        [_c("spendings-details", { ref: "spendingsDetails" })],
         1
       )
     ])
@@ -34056,7 +34059,10 @@ var render = function() {
           class: { active: _vm.$route.name === "home" },
           attrs: { to: { name: "home" } }
         },
-        [_vm._v("Home")]
+        [
+          _c("img", { attrs: { height: "22", src: "/img/home.png" } }),
+          _vm._v("\n\t\t\tHome\n\t\t")
+        ]
       ),
       _vm._v(" "),
       _c(
@@ -34065,7 +34071,10 @@ var render = function() {
           class: { active: _vm.$route.name === "spendings" },
           attrs: { to: { name: "spendings" } }
         },
-        [_vm._v("Dépenses")]
+        [
+          _c("img", { attrs: { height: "20", src: "/img/spendings.png" } }),
+          _vm._v("\n        \tDépenses\n    \t")
+        ]
       ),
       _vm._v(" "),
       _c(
@@ -34074,7 +34083,10 @@ var render = function() {
           class: { active: _vm.$route.name === "synthesis" },
           attrs: { to: { name: "synthesis" } }
         },
-        [_vm._v("Synthèse")]
+        [
+          _c("img", { attrs: { height: "22", src: "/img/charts.png" } }),
+          _vm._v("\n        \tSynthèse\n    \t")
+        ]
       ),
       _vm._v(" "),
       _c(
@@ -34083,15 +34095,28 @@ var render = function() {
           class: { active: _vm.$route.name === "users" },
           attrs: { to: { name: "users" } }
         },
-        [_vm._v("Membres")]
+        [
+          _c("img", { attrs: { height: "22", src: "/img/members.png" } }),
+          _vm._v("\n        \tMembres\n    \t")
+        ]
       ),
       _vm._v(" "),
-      _c("a", { attrs: { href: "/logout" } }, [_vm._v("Déconnexion")])
+      _vm._m(0)
     ],
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { attrs: { href: "/logout" } }, [
+      _c("img", { attrs: { height: "22", src: "/img/logout.png" } }),
+      _vm._v("\n        \tDéconnexion\n    \t")
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -35037,6 +35062,21 @@ var render = function() {
                       }
                     },
                     [_vm._v("x")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn-primary on-active",
+                      staticStyle: { "margin-top": "4px" },
+                      on: {
+                        click: function($event) {
+                          $event.stopPropagation()
+                          _vm.updateSpending(spending)
+                        }
+                      }
+                    },
+                    [_vm._v("✓")]
                   )
                 ])
               ]

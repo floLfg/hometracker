@@ -39,7 +39,7 @@ button {
 }
 
 .nav-pills {
-	border-bottom: 2px solid $main_dark;
+	border-bottom: 3px solid $main_dark;
 
 	li {
 		margin: 0 !important;
@@ -84,14 +84,14 @@ button {
 }
 
 .btn-primary {
-	background-color: $main;
-	border: 2px solid $dark_grey !important;
-	color: $dark_grey !important;
+	background-color: $lighter_grey;
+	border: none !important;
+	color: $white;
 	font-size: 14px;
 	border-radius: 3px;
 
 	&:hover, &:active, &:focus {
-		background-color: $main_dark;		
+		background-color: $dark_grey;
 	}
 }
 
@@ -213,6 +213,14 @@ td.small {
     	left: calc(50% - #{$menu_width + 150}/2);
 		width: $menu_width + 150;
 		border-left: 4px solid $dark_grey;
+
+		a {
+			text-align: center;
+
+			img {
+				display: none;
+			}
+		}
     }
 
 	a {
@@ -221,7 +229,7 @@ td.small {
 		padding: 20px;
 		font-size: 22px;
 		font-family: Lobster;
-		text-align: center;
+		text-align: left;
 		text-decoration: none !important;
 		transition: all 0.25s;
 		border-top: 1px solid transparent;
@@ -237,6 +245,11 @@ td.small {
 			& + a.active {
 				border-top-color: transparent;
 			}
+		}
+
+		img {
+			margin-top: -4px;
+			margin-right: 10px;
 		}
 	}
 
