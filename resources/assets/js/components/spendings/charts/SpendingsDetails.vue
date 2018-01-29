@@ -19,6 +19,9 @@
             <option value="2018">2018</option>
             <option value="2019">2019</option>
         </select>
+        <span class="month-total">
+            (Total : {{ total }} €)
+        </span>
 
         <div class="flex-container center">
             <spendings-dividing :year="year" :month="month" ref="spendingsDividing"></spendings-dividing>  
@@ -32,7 +35,8 @@
     	data() {
     		return {
 	    		month: '1',
-	            year: '2018'
+	            year: '2018',
+                total: 0
     		};
     	},
     	mounted() {
@@ -47,7 +51,11 @@
 	    			this.$refs.spendingsDividing.fetchData();
 	    			this.$refs.spendingsSituation.fetchData();
 	    		});
-	    	}
+	    	},
+
+            setTotal(total) {
+                this.total = total;
+            }
 	    }
     }
 </script>

@@ -71,6 +71,8 @@
                     let situationChart = this.$refs.situationChart;
                     situationChart.removeSeries();
                     situationChart.addSeries(series);
+                    
+                    this.$parent.setTotal(this.total.toFixed(2));
                 })
                 .catch(error => {
                     this.$root.$refs.toastr.removeByType('error');

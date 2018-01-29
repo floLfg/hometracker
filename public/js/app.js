@@ -2012,12 +2012,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             month: 1,
             year: 2018,
+            total: 0,
             spendings: [],
             users: [],
             categories: []
@@ -2044,7 +2048,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var params = '?month=' + parseInt(this.month) + '&year=' + parseInt(this.year);
 
             axios.get('api/spendings' + params).then(function (response) {
-                _this2.spendings = response.data;
+                _this2.spendings = response.data.spendings;
+                _this2.total = response.data.total;
             });
 
             axios.get('api/categories').then(function (response) {
@@ -2131,10 +2136,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     methods: {
         toggleCharts: function toggleCharts(title) {
-            $('.tab-pane[data-title=' + title + ']').addClass('in').addClass('active');
+            $('.tab-pane[data-title=' + title + ']').addClass('active');
             $('button.toggle-charts.' + title).addClass('active');
 
-            $('.tab-pane:not([data-title=' + title + '])').removeClass('in').removeClass('active');
+            $('.tab-pane:not([data-title=' + title + '])').removeClass('active');
             $('button.toggle-charts:not(.' + title + ')').removeClass('active');
         }
     }
@@ -2176,29 +2181,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-   data: function data() {
-      return {
-         month: '1',
-         year: '2018'
-      };
-   },
-   mounted: function mounted() {
-      var today = new Date();
-      this.month = (today.getMonth() + 1).toString();
-      this.year = today.getFullYear().toString();
-      this.fetchData();
-   },
+    data: function data() {
+        return {
+            month: '1',
+            year: '2018',
+            total: 0
+        };
+    },
+    mounted: function mounted() {
+        var today = new Date();
+        this.month = (today.getMonth() + 1).toString();
+        this.year = today.getFullYear().toString();
+        this.fetchData();
+    },
 
-   methods: {
-      fetchData: function fetchData() {
-         this.$nextTick(function () {
-            this.$refs.spendingsDividing.fetchData();
-            this.$refs.spendingsSituation.fetchData();
-         });
-      }
-   }
+    methods: {
+        fetchData: function fetchData() {
+            this.$nextTick(function () {
+                this.$refs.spendingsDividing.fetchData();
+                this.$refs.spendingsSituation.fetchData();
+            });
+        },
+        setTotal: function setTotal(total) {
+            this.total = total;
+        }
+    }
 });
 
 /***/ }),
@@ -2381,6 +2393,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 var situationChart = _this.$refs.situationChart;
                 situationChart.removeSeries();
                 situationChart.addSeries(series);
+
+                _this.$parent.setTotal(_this.total.toFixed(2));
             }).catch(function (error) {
                 _this.$root.$refs.toastr.removeByType('error');
                 _this.$root.$refs.toastr.e('Une erreur s\'est produite');
@@ -33938,6 +33952,10 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
+    _c("span", { staticClass: "month-total" }, [
+      _vm._v("\n            (Total : " + _vm._s(_vm.total) + " €)\n        ")
+    ]),
+    _vm._v(" "),
     _c(
       "div",
       { staticClass: "flex-container center" },
@@ -34013,17 +34031,14 @@ var render = function() {
     _c("div", { staticClass: "tab-content" }, [
       _c(
         "div",
-        {
-          staticClass: "tab-pane fade in active",
-          attrs: { "data-title": "total" }
-        },
+        { staticClass: "tab-pane active", attrs: { "data-title": "total" } },
         [_c("spendings-total")],
         1
       ),
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "tab-pane fade", attrs: { "data-title": "detail" } },
+        { staticClass: "tab-pane", attrs: { "data-title": "detail" } },
         [_c("spendings-details", { ref: "spendingsDetails" })],
         1
       )
@@ -34727,6 +34742,10 @@ var render = function() {
           _c("option", { attrs: { value: "2019" } }, [_vm._v("2019")])
         ]
       ),
+      _vm._v(" "),
+      _c("span", { staticClass: "month-total" }, [
+        _vm._v("\n        (Total : " + _vm._s(_vm.total) + " €)\n    ")
+      ]),
       _vm._v(" "),
       _c("table", { staticClass: "table table-striped table-selectable" }, [
         _vm._m(0),

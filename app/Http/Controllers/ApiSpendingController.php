@@ -22,7 +22,12 @@ class ApiSpendingController extends Controller
                               ->orderBy('date', 'desc')
                               ->get();
 
-    	return response()->json($spendings);
+        $result = [
+            'spendings' => $spendings,
+            'total' => round($spendings->sum('amount'), 2)
+        ];
+
+    	return response()->json($result);
     }
 
     public function update($id, SpendingRequest $request)

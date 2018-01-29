@@ -10,10 +10,10 @@
         </ul>
         <br>
         <div class="tab-content">
-            <div data-title="total" class="tab-pane fade in active">
+            <div data-title="total" class="tab-pane active">
                 <spendings-total></spendings-total>
             </div>
-            <div data-title="detail" class="tab-pane fade">
+            <div data-title="detail" class="tab-pane">
                 <spendings-details ref="spendingsDetails"></spendings-details>
             </div>
         </div>
@@ -24,10 +24,10 @@
     export default {
         methods: {
             toggleCharts(title) {
-                $('.tab-pane[data-title='+title+']').addClass('in').addClass('active');
+                $('.tab-pane[data-title='+title+']').addClass('active');
                 $('button.toggle-charts.'+title).addClass('active');
 
-                $('.tab-pane:not([data-title='+title+'])').removeClass('in').removeClass('active');
+                $('.tab-pane:not([data-title='+title+'])').removeClass('active');
                 $('button.toggle-charts:not(.'+title+')').removeClass('active');
             }
         }

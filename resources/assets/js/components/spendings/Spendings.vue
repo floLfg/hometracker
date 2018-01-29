@@ -22,6 +22,9 @@
             <option value="2018">2018</option>
             <option value="2019">2019</option>
         </select>
+        <span class="month-total">
+            (Total : {{ total }} €)
+        </span>
         
         <table class="table table-striped table-selectable">
             <thead class="center">
@@ -107,6 +110,7 @@
             return {
                 month: 1,
                 year: 2018,
+                total: 0,
                 spendings: [],
                 users: [],
                 categories: []
@@ -128,7 +132,8 @@
                 let params = '?month='+parseInt(this.month)+'&year='+parseInt(this.year);
 
                 axios.get('api/spendings' + params).then((response) => {
-                    this.spendings = response.data;
+                    this.spendings = response.data.spendings;
+                    this.total = response.data.total
                 });
 
                 axios.get('api/categories').then((response) => {
