@@ -28,12 +28,20 @@
         
         <table class="table table-striped table-selectable">
             <thead class="center">
-                    <tr>
-                        <th>Date</th>
-                        <th>Membre</th>
-                        <th>Catégorie</th>
+                    <tr class="orders">
+                        <th v-on:click.stop="sortBy('date')" :class="sortKey == 'date' ? 'active' : ''">
+                            Date
+                        </th>
+                        <th v-on:click.stop="sortBy('user_id')" :class="sortKey == 'member' ? 'active' : ''">
+                            Membre
+                        </th>
+                        <th v-on:click.stop="sortBy('category_id')" :class="sortKey == 'category_id' ? 'active' : ''">
+                            Catégorie
+                        </th>
                         <th>Détail</th>
-                        <th>Montant</th>
+                        <th v-on:click.stop="sortBy('amount')" :class="sortKey == 'amount' ? 'active' : ''">
+                            Montant
+                        </th>
                         <th></th>
                     </tr>
                 </thead>
@@ -108,6 +116,9 @@
     export default {
         data() {
             return {
+                sortKey: 'date',
+                reverse: false,
+
                 month: 1,
                 year: 2018,
                 total: 0,
@@ -179,7 +190,19 @@
                         this.$root.$refs.toastr.e('Une erreur est survenue');
                     });
                 }
-            }
+            },
+            sortBy: function(sortKey) {
+                this.reverse = (this.sortKey == sortKey) ? ! this.reverse : false;
+                this.sortKey = sortKey;
+                let reverse = this.reverse;
+                this.spendings = this.spendings.sort(function(a, b) {
+                    if (reverse) {
+                        return a[sortKey] - b[sortKey];
+                    } else {
+                        return b[sortKey] - a[sortKey];
+                    }
+                });
+            },
         }
     }
 </script>

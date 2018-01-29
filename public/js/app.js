@@ -2015,10 +2015,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            sortKey: 'date',
+            reverse: false,
+
             month: 1,
             year: 2018,
             total: 0,
@@ -2099,6 +2110,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     _this4.$root.$refs.toastr.e('Une erreur est survenue');
                 });
             }
+        },
+
+        sortBy: function sortBy(sortKey) {
+            this.reverse = this.sortKey == sortKey ? !this.reverse : false;
+            this.sortKey = sortKey;
+            var reverse = this.reverse;
+            this.spendings = this.spendings.sort(function (a, b) {
+                if (reverse) {
+                    return a[sortKey] - b[sortKey];
+                } else {
+                    return b[sortKey] - a[sortKey];
+                }
+            });
         }
     }
 });
@@ -34748,7 +34772,77 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("table", { staticClass: "table table-striped table-selectable" }, [
-        _vm._m(0),
+        _c("thead", { staticClass: "center" }, [
+          _c("tr", { staticClass: "orders" }, [
+            _c(
+              "th",
+              {
+                class: _vm.sortKey == "date" ? "active" : "",
+                on: {
+                  click: function($event) {
+                    $event.stopPropagation()
+                    _vm.sortBy("date")
+                  }
+                }
+              },
+              [_vm._v("\n                        Date\n                    ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "th",
+              {
+                class: _vm.sortKey == "member" ? "active" : "",
+                on: {
+                  click: function($event) {
+                    $event.stopPropagation()
+                    _vm.sortBy("user_id")
+                  }
+                }
+              },
+              [_vm._v("\n                        Membre\n                    ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "th",
+              {
+                class: _vm.sortKey == "category_id" ? "active" : "",
+                on: {
+                  click: function($event) {
+                    $event.stopPropagation()
+                    _vm.sortBy("category_id")
+                  }
+                }
+              },
+              [
+                _vm._v(
+                  "\n                        Catégorie\n                    "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("th", [_vm._v("Détail")]),
+            _vm._v(" "),
+            _c(
+              "th",
+              {
+                class: _vm.sortKey == "amount" ? "active" : "",
+                on: {
+                  click: function($event) {
+                    $event.stopPropagation()
+                    _vm.sortBy("amount")
+                  }
+                }
+              },
+              [
+                _vm._v(
+                  "\n                        Montant\n                    "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("th")
+          ])
+        ]),
         _vm._v(" "),
         _c(
           "tbody",
@@ -35107,28 +35201,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", { staticClass: "center" }, [
-      _c("tr", [
-        _c("th", [_vm._v("Date")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Membre")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Catégorie")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Détail")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Montant")]),
-        _vm._v(" "),
-        _c("th")
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
