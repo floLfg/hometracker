@@ -107,7 +107,7 @@ button {
 .front-select {
 	background-color: $white;
 	color: $dark_grey;
-	border: 2px solid #bdc3c7;
+	border: 2px solid $grey;
 	outline: none;
 	font-family: Lobster;
 	font-size: 16px;
@@ -327,7 +327,7 @@ td.small {
 		display: block;
 		height: 100px;
 		width: 100px;
-		padding: 2px;
+		padding: 4px;
 		margin: 10px auto 10px auto;
 		border-radius: 100%;
 		text-align: center;
@@ -433,6 +433,46 @@ table .btn-delete {
 .month-total {
 	margin-left: 10px;
 	font-size: 16px;
+}
+
+.prev-month {
+	margin-left: 10px;
+}
+
+.next-month {
+	margin-left: 5px;
+}
+
+.prev-month, .next-month {
+	background-color: $medium_grey;
+	text-align: center;
+	line-height: 30px;
+	display: inline-block;
+	height: 30px;
+	width: 30px;
+	border-radius: 30px;
+
+	img {
+		height: 15px;
+	}
+
+	&:hover {
+		background-color: $dark_grey;
+	}
+}
+
+.prev-month {
+	img {
+		margin-right: 2px;
+		margin-top: -1px;
+	}
+}
+
+.next-month {
+	img {
+		margin-left: 2px;
+		margin-top: -1px;
+	}
 }
 
 tr.orders {

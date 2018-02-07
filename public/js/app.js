@@ -2035,6 +2035,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -2117,6 +2122,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.get('api/categories').then(function (response) {
                 _this2.categories = response.data;
             });
+        },
+        prevMonth: function prevMonth() {
+            if (this.month == 1) {
+                this.month = 12;
+                this.year--;
+            } else {
+                this.month--;
+            }
+
+            this.fetchData();
+        },
+        nextMonth: function nextMonth() {
+            if (this.month == 12) {
+                this.month = 1;
+                this.year++;
+            } else {
+                this.month++;
+            }
+
+            this.fetchData();
         },
         editSpending: function editSpending(spending) {
             if (!$(this.$refs['spending-' + spending.id]).hasClass('active')) {
@@ -2275,6 +2300,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -2297,6 +2328,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.$refs.spendingsDividing.fetchData();
                 this.$refs.spendingsSituation.fetchData();
             });
+        },
+        prevMonth: function prevMonth() {
+            if (this.month == 1) {
+                this.month = 12;
+                this.year--;
+            } else {
+                this.month--;
+            }
+
+            this.fetchData();
+        },
+        nextMonth: function nextMonth() {
+            if (this.month == 12) {
+                this.month = 1;
+                this.year++;
+            } else {
+                this.month++;
+            }
+
+            this.fetchData();
         },
         setTotal: function setTotal(total) {
             this.total = total;
@@ -34039,8 +34090,40 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
+    _c(
+      "a",
+      {
+        staticClass: "prev-month",
+        attrs: { href: "#" },
+        on: {
+          click: function($event) {
+            $event.preventDefault()
+            _vm.prevMonth()
+          }
+        }
+      },
+      [_c("img", { attrs: { src: "/img/arrow-left.png" } })]
+    ),
+    _vm._v(" "),
+    _c(
+      "a",
+      {
+        staticClass: "next-month",
+        attrs: { href: "#" },
+        on: {
+          click: function($event) {
+            $event.preventDefault()
+            _vm.nextMonth()
+          }
+        }
+      },
+      [_c("img", { attrs: { src: "/img/arrow-right.png" } })]
+    ),
+    _vm._v(" "),
     _c("span", { staticClass: "month-total" }, [
-      _vm._v("\n            (Total : " + _vm._s(_vm.total) + " €)\n        ")
+      _vm._v("\n            (Total : "),
+      _c("b", [_vm._v(_vm._s(_vm.total))]),
+      _vm._v(" €)\n        ")
     ]),
     _vm._v(" "),
     _c(
@@ -34830,8 +34913,40 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "prev-month",
+          attrs: { href: "#" },
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              _vm.prevMonth()
+            }
+          }
+        },
+        [_c("img", { attrs: { src: "/img/arrow-left.png" } })]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "next-month",
+          attrs: { href: "#" },
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              _vm.nextMonth()
+            }
+          }
+        },
+        [_c("img", { attrs: { src: "/img/arrow-right.png" } })]
+      ),
+      _vm._v(" "),
       _c("span", { staticClass: "month-total" }, [
-        _vm._v("\n        (Total : " + _vm._s(_vm.total) + " €)\n    ")
+        _vm._v("\n        (Total : "),
+        _c("b", [_vm._v(_vm._s(_vm.total) + " ")]),
+        _vm._v("€)\n    ")
       ]),
       _vm._v(" "),
       _c("table", { staticClass: "table table-striped table-selectable" }, [

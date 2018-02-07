@@ -22,10 +22,15 @@
             <option value="2018">2018</option>
             <option value="2019">2019</option>
         </select>
+        <a class="prev-month" href="#" v-on:click.prevent="prevMonth()">
+            <img src="/img/arrow-left.png">
+        </a>
+        <a class="next-month" href="#" v-on:click.prevent="nextMonth()">
+            <img src="/img/arrow-right.png">
+        </a>
         <span class="month-total">
-            (Total : {{ total }} €)
+            (Total : <b>{{ total }} </b>€)
         </span>
-        
         <table class="table table-striped table-selectable">
             <thead class="center">
                 <tr class="orders">
@@ -189,7 +194,7 @@
             this.fetchData();
         },
         methods: {
-            fetchData () {
+            fetchData() {
                 let params = '?month='+parseInt(this.month)+'&year='+parseInt(this.year);
 
                 axios.get('api/spendings' + params).then((response) => {
@@ -200,6 +205,26 @@
                 axios.get('api/categories').then((response) => {
                     this.categories = response.data;
                 });
+            },
+            prevMonth() {
+                if (this.month == 1) {
+                    this.month = 12;
+                    this.year --;
+                } else {
+                    this.month --;
+                }
+
+                this.fetchData();
+            },
+            nextMonth() {
+                if (this.month == 12) {
+                    this.month = 1;
+                    this.year ++;
+                } else {
+                    this.month ++;
+                }
+
+                this.fetchData();
             },
             editSpending(spending) {
                 if (! $(this.$refs['spending-' + spending.id]).hasClass('active')) {
