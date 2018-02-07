@@ -2764,10 +2764,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     created: function created() {
         this.fetchData();
-        $('*').click(function (event) {
-            event.stopPropagation();
-            $('.editing').removeClass('editing');
-        });
     },
 
     methods: {

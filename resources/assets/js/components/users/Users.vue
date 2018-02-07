@@ -19,10 +19,6 @@
         },
         created() {
             this.fetchData();
-            $('*').click(function(event) {
-                event.stopPropagation();
-                $('.editing').removeClass('editing');
-            });
         },
         methods: {
             fetchData () {
