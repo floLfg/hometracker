@@ -444,7 +444,7 @@ table .btn-delete {
 }
 
 .prev-month, .next-month {
-	background-color: $medium_grey;
+	background-color: transparent;
 	text-align: center;
 	line-height: 30px;
 	display: inline-block;
@@ -457,7 +457,7 @@ table .btn-delete {
 	}
 
 	&:hover {
-		background-color: $dark_grey;
+		background-color: $medium_grey;
 	}
 }
 
