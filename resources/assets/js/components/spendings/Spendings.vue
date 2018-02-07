@@ -28,23 +28,35 @@
         
         <table class="table table-striped table-selectable">
             <thead class="center">
-                    <tr class="orders">
-                        <th v-on:click.stop="sortBy('date')" :class="sortKey == 'date' ? 'active' : ''">
-                            Date
-                        </th>
-                        <th v-on:click.stop="sortBy('user_id')" :class="sortKey == 'member' ? 'active' : ''">
-                            Membre
-                        </th>
-                        <th v-on:click.stop="sortBy('category_id')" :class="sortKey == 'category_id' ? 'active' : ''">
-                            Catégorie
-                        </th>
-                        <th>Détail</th>
-                        <th v-on:click.stop="sortBy('amount')" :class="sortKey == 'amount' ? 'active' : ''">
-                            Montant
-                        </th>
-                        <th></th>
-                    </tr>
-                </thead>
+                <tr class="orders">
+                    <th v-on:click.stop="sortBy('date')" :class="sortKey == 'date' ? 'active' : ''">
+                        Date
+                        <img v-show="showDateSortIcon" src="/img/sort_icon.png" height="12">
+                        <img v-show="showDateSortUpIcon" src="/img/sort_up_icon.png" height="12">
+                        <img v-show="showDateSortDownIcon" src="/img/sort_down_icon.png" height="12">
+                    </th>
+                    <th v-on:click.stop="sortBy('user_id')" :class="sortKey == 'member_id' ? 'active' : ''">
+                        Membre
+                        <img v-show="showUserSortIcon" src="/img/sort_icon.png" height="12">
+                        <img v-show="showUserSortUpIcon" src="/img/sort_up_icon.png" height="12">
+                        <img v-show="showUserSortDownIcon" src="/img/sort_down_icon.png" height="12">
+                    </th>
+                    <th v-on:click.stop="sortBy('category_id')" :class="sortKey == 'category_id' ? 'active' : ''">
+                        Catégorie
+                        <img v-show="showCategorySortIcon" src="/img/sort_icon.png" height="12">
+                        <img v-show="showCategorySortUpIcon" src="/img/sort_up_icon.png" height="12">
+                        <img v-show="showCategorySortDownIcon" src="/img/sort_down_icon.png" height="12">
+                    </th>
+                    <th>Détail</th>
+                    <th v-on:click.stop="sortBy('amount')" :class="sortKey == 'amount' ? 'active' : ''">
+                        Montant
+                        <img v-show="showAmountSortIcon" src="/img/sort_icon.png" height="12">
+                        <img v-show="showAmountSortUpIcon" src="/img/sort_up_icon.png" height="12">
+                        <img v-show="showAmountSortDownIcon" src="/img/sort_down_icon.png" height="12">
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
             <tbody class="center">
                 <tr v-for="spending in spendings" v-on:click.stop="editSpending(spending)" :ref="'spending-' + spending.id" class="spending">
                     <td>
@@ -127,6 +139,44 @@
                 categories: []
             }
         },
+        computed: {
+            showDateSortIcon: function () {
+                return this.sortKey != 'date';
+            },
+            showDateSortUpIcon: function () {
+                return this.sortKey == 'date' && ! this.reverse;
+            },
+            showDateSortDownIcon: function () {
+                return this.sortKey == 'date' && this.reverse;
+            },
+            showUserSortIcon: function () {
+                return this.sortKey != 'user_id';
+            },
+            showUserSortUpIcon: function () {
+                return this.sortKey == 'user_id' && ! this.reverse;
+            },
+            showUserSortDownIcon: function () {
+                return this.sortKey == 'user_id' && this.reverse;
+            },
+            showCategorySortIcon: function () {
+                return this.sortKey != 'category_id';
+            },
+            showCategorySortUpIcon: function () {
+                return this.sortKey == 'category_id' && ! this.reverse;
+            },
+            showCategorySortDownIcon: function () {
+                return this.sortKey == 'category_id' && this.reverse;
+            },
+            showAmountSortIcon: function () {
+                return this.sortKey != 'amount';
+            },
+            showAmountSortUpIcon: function () {
+                return this.sortKey == 'amount' && ! this.reverse;
+            },
+            showAmountSortDownIcon: function () {
+                return this.sortKey == 'amount' && this.reverse;
+            }
+        },
         mounted() {
             var today = new Date();
             this.month = today.getMonth() + 1;
@@ -196,10 +246,25 @@
                 this.sortKey = sortKey;
                 let reverse = this.reverse;
                 this.spendings = this.spendings.sort(function(a, b) {
-                    if (reverse) {
-                        return a[sortKey] - b[sortKey];
+                    let valueA, valueB;
+
+                    if (sortKey == 'user_id') {
+                        valueA = a['user']['name'];
+                        valueB = b['user']['name'];
+                    } else if (sortKey == 'category_id') {
+                        valueA = a['category']['title'];
+                        valueB = b['category']['title'];
                     } else {
-                        return b[sortKey] - a[sortKey];
+                        valueA = a[sortKey];
+                        valueB = b[sortKey];
+                    }
+
+                    if (valueA < valueB) {
+                        return (reverse) ? -1 : 1;
+                    } else if (valueA > valueB) {
+                        return (reverse) ? 1 : -1;
+                    } else {
+                        return 0;
                     }
                 });
             },

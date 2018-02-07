@@ -2023,6 +2023,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -2037,6 +2049,45 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             users: [],
             categories: []
         };
+    },
+
+    computed: {
+        showDateSortIcon: function showDateSortIcon() {
+            return this.sortKey != 'date';
+        },
+        showDateSortUpIcon: function showDateSortUpIcon() {
+            return this.sortKey == 'date' && !this.reverse;
+        },
+        showDateSortDownIcon: function showDateSortDownIcon() {
+            return this.sortKey == 'date' && this.reverse;
+        },
+        showUserSortIcon: function showUserSortIcon() {
+            return this.sortKey != 'user_id';
+        },
+        showUserSortUpIcon: function showUserSortUpIcon() {
+            return this.sortKey == 'user_id' && !this.reverse;
+        },
+        showUserSortDownIcon: function showUserSortDownIcon() {
+            return this.sortKey == 'user_id' && this.reverse;
+        },
+        showCategorySortIcon: function showCategorySortIcon() {
+            return this.sortKey != 'category_id';
+        },
+        showCategorySortUpIcon: function showCategorySortUpIcon() {
+            return this.sortKey == 'category_id' && !this.reverse;
+        },
+        showCategorySortDownIcon: function showCategorySortDownIcon() {
+            return this.sortKey == 'category_id' && this.reverse;
+        },
+        showAmountSortIcon: function showAmountSortIcon() {
+            return this.sortKey != 'amount';
+        },
+        showAmountSortUpIcon: function showAmountSortUpIcon() {
+            return this.sortKey == 'amount' && !this.reverse;
+        },
+        showAmountSortDownIcon: function showAmountSortDownIcon() {
+            return this.sortKey == 'amount' && this.reverse;
+        }
     },
     mounted: function mounted() {
         var _this = this;
@@ -2117,10 +2168,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.sortKey = sortKey;
             var reverse = this.reverse;
             this.spendings = this.spendings.sort(function (a, b) {
-                if (reverse) {
-                    return a[sortKey] - b[sortKey];
+                var valueA = void 0,
+                    valueB = void 0;
+
+                if (sortKey == 'user_id') {
+                    valueA = a['user']['name'];
+                    valueB = b['user']['name'];
+                } else if (sortKey == 'category_id') {
+                    valueA = a['category']['title'];
+                    valueB = b['category']['title'];
                 } else {
-                    return b[sortKey] - a[sortKey];
+                    valueA = a[sortKey];
+                    valueB = b[sortKey];
+                }
+
+                if (valueA < valueB) {
+                    return reverse ? -1 : 1;
+                } else if (valueA > valueB) {
+                    return reverse ? 1 : -1;
+                } else {
+                    return 0;
                 }
             });
         }
@@ -34785,13 +34852,50 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v("\n                        Date\n                    ")]
+              [
+                _vm._v("\n                    Date\n                    "),
+                _c("img", {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.showDateSortIcon,
+                      expression: "showDateSortIcon"
+                    }
+                  ],
+                  attrs: { src: "/img/sort_icon.png", height: "12" }
+                }),
+                _vm._v(" "),
+                _c("img", {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.showDateSortUpIcon,
+                      expression: "showDateSortUpIcon"
+                    }
+                  ],
+                  attrs: { src: "/img/sort_up_icon.png", height: "12" }
+                }),
+                _vm._v(" "),
+                _c("img", {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.showDateSortDownIcon,
+                      expression: "showDateSortDownIcon"
+                    }
+                  ],
+                  attrs: { src: "/img/sort_down_icon.png", height: "12" }
+                })
+              ]
             ),
             _vm._v(" "),
             _c(
               "th",
               {
-                class: _vm.sortKey == "member" ? "active" : "",
+                class: _vm.sortKey == "member_id" ? "active" : "",
                 on: {
                   click: function($event) {
                     $event.stopPropagation()
@@ -34799,7 +34903,44 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v("\n                        Membre\n                    ")]
+              [
+                _vm._v("\n                    Membre\n                    "),
+                _c("img", {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.showUserSortIcon,
+                      expression: "showUserSortIcon"
+                    }
+                  ],
+                  attrs: { src: "/img/sort_icon.png", height: "12" }
+                }),
+                _vm._v(" "),
+                _c("img", {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.showUserSortUpIcon,
+                      expression: "showUserSortUpIcon"
+                    }
+                  ],
+                  attrs: { src: "/img/sort_up_icon.png", height: "12" }
+                }),
+                _vm._v(" "),
+                _c("img", {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.showUserSortDownIcon,
+                      expression: "showUserSortDownIcon"
+                    }
+                  ],
+                  attrs: { src: "/img/sort_down_icon.png", height: "12" }
+                })
+              ]
             ),
             _vm._v(" "),
             _c(
@@ -34814,9 +34955,42 @@ var render = function() {
                 }
               },
               [
-                _vm._v(
-                  "\n                        Catégorie\n                    "
-                )
+                _vm._v("\n                    Catégorie\n                    "),
+                _c("img", {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.showCategorySortIcon,
+                      expression: "showCategorySortIcon"
+                    }
+                  ],
+                  attrs: { src: "/img/sort_icon.png", height: "12" }
+                }),
+                _vm._v(" "),
+                _c("img", {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.showCategorySortUpIcon,
+                      expression: "showCategorySortUpIcon"
+                    }
+                  ],
+                  attrs: { src: "/img/sort_up_icon.png", height: "12" }
+                }),
+                _vm._v(" "),
+                _c("img", {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.showCategorySortDownIcon,
+                      expression: "showCategorySortDownIcon"
+                    }
+                  ],
+                  attrs: { src: "/img/sort_down_icon.png", height: "12" }
+                })
               ]
             ),
             _vm._v(" "),
@@ -34834,9 +35008,42 @@ var render = function() {
                 }
               },
               [
-                _vm._v(
-                  "\n                        Montant\n                    "
-                )
+                _vm._v("\n                    Montant\n                    "),
+                _c("img", {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.showAmountSortIcon,
+                      expression: "showAmountSortIcon"
+                    }
+                  ],
+                  attrs: { src: "/img/sort_icon.png", height: "12" }
+                }),
+                _vm._v(" "),
+                _c("img", {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.showAmountSortUpIcon,
+                      expression: "showAmountSortUpIcon"
+                    }
+                  ],
+                  attrs: { src: "/img/sort_up_icon.png", height: "12" }
+                }),
+                _vm._v(" "),
+                _c("img", {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.showAmountSortDownIcon,
+                      expression: "showAmountSortDownIcon"
+                    }
+                  ],
+                  attrs: { src: "/img/sort_down_icon.png", height: "12" }
+                })
               ]
             ),
             _vm._v(" "),

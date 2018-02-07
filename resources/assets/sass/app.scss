@@ -54,6 +54,7 @@ button {
 			&.active {
 				border-color: $main_dark !important;
 				background-color: $main_dark !important;
+				color: $white !important;
 			}
 		}
 
@@ -173,6 +174,15 @@ thead.center {
 	tr td {
 		text-align: center;
 	}
+}
+
+table thead th {
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 td.small {
@@ -317,7 +327,7 @@ td.small {
 		display: block;
 		height: 100px;
 		width: 100px;
-		padding: 25px;
+		padding: 2px;
 		margin: 10px auto 10px auto;
 		border-radius: 100%;
 		text-align: center;

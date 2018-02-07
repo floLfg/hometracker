@@ -7774,6 +7774,7 @@ button {
 .nav-pills li button.active {
   border-color: #7badc1 !important;
   background-color: #7badc1 !important;
+  color: #ffffff !important;
 }
 
 .nav-pills li:first-child button {
@@ -7881,6 +7882,14 @@ tbody.center tr td,
 thead.center tr th,
 thead.center tr td {
   text-align: center;
+}
+
+table thead th {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 td.small {
@@ -8033,7 +8042,7 @@ td.small {
   display: block;
   height: 100px;
   width: 100px;
-  padding: 25px;
+  padding: 2px;
   margin: 10px auto 10px auto;
   border-radius: 100%;
   text-align: center;
