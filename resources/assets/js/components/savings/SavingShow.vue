@@ -1,25 +1,26 @@
 <template>
-	<div class="blue-box item-show" v-on:click="editUser(item)" :style="'border-color:'+user.color">
+	<div class="blue-box item-show">
         <div v-show="editing">
-            <button class="btn-delete" v-on:click.stop="deleteUser(item)">Supprimer</button>
-            <form v-on:submit.prevent="updateUser(item)" v-bind:id="'form-user-' + item.id">
-                <input type="text" ref="name" name="name" v-model="item.name" class="form-control">
+            <button class="btn-delete" v-on:click.stop="deleteSaving(item)">
+                Supprimer
+            </button>
+            <form v-on:submit.prevent="updateSaving(item)" v-bind:id="'form-saving-' + item.id">
+                <input type="text" ref="title" name="title" v-model="item.title" class="form-control">
                 <br>
-                <input type="text" ref="email" name="email" v-model="item.email" class="form-control">
-                <br>
-                <input type="color" ref="color" name="color" v-model="user.color" class="form-control">
+                <input type="number" min="0" step="0.01" ref="target_amount" name="target_amount" v-model="item.target_amount" class="form-control">
                 <button type="submit" class="btn btn-primary form-control">Enregistrer</button>
             </form>
         </div>
-
         <div v-show="! editing">
             <p class="edit-label">
-                <img height="20" src="/img/edit-icon.png">
+                <img height="20" src="/img/edit-icon.png" v-on:click="editSaving(item)">
             </p>
-            <div class="avatar" :style="'background-color:'+user.color">
-                <img src="/img/avatar.png">
-            </div>
-            <p class="name" :style="'color:'+user.color">{{ item.name }}</p>
+            <p>Projet : {{ item.title }}</p>
+            <p>Montant visé : {{ item.target_amount }}</p>
+            <p>Montant actuel : {{ item.current_amount }}</p>
+            <p v-for="user in saving.users">{{ user.name + ' : ' + user.pivot.amount }}</p>
+            <hr>
+            <participation-create :saving="item"></participation-create>
         </div>
     </div>
 </template>
@@ -27,32 +28,36 @@
 <script>
     export default {
     	props: {
-    		user: {
+    		saving: {
                 type: Object,
                 required: true
             }
     	},
         data() {
             return {
-                item: this.user,
+                item: this.saving,
                 editing: false
             };   
         },
-        created() {
-            this.item = this.user;
+        watch: {
+            saving: function (saving) {
+                this.item = saving;
+            }
         },
         methods: {
-            editUser(user) {
+            fetchData() {
+                this.$parent.fetchData();
+            },
+            editSaving(saving) {
                 if (! this.editing) {
                     this.editing = true;
-                    this.$nextTick(() => this.$refs.name.focus());
+                    this.$nextTick(() => this.$refs.title.focus());
                 }
             },
-            updateUser(user) {
-                axios.put('api/users/' + user.id, user).then((response) => {
+            updateSaving(saving) {
+                axios.put('api/savings/' + saving.id, saving).then((response) => {
                     this.$root.$refs.toastr.removeByType('success');
-                    this.$root.$refs.toastr.s('Membre mis à jour');
-                    this.item = response.data;
+                    this.$root.$refs.toastr.s('Projet mis à jour');
                     this.editing = false;
                 }).catch(error => {
                     let messages = '';
@@ -68,11 +73,11 @@
                     this.$root.$refs.toastr.e(messages);
                 });
             },
-            deleteUser(user) {
-                if (confirm('Voulez-vous vraiment supprimer ce membre ?')) {
-                    axios.delete('api/users/' + user.id).then((response) => {
+            deleteSaving(saving) {
+                if (confirm('Voulez-vous vraiment supprimer ce projet ?')) {
+                    axios.delete('api/savings/' + saving.id).then((response) => {
                         this.$root.$refs.toastr.removeByType('success');
-                        this.$root.$refs.toastr.s('Membre supprimé');
+                        this.$root.$refs.toastr.s('Projet supprimé');
                         this.$parent.fetchData();
                     }).catch(error => {
                         this.$root.$refs.toastr.removeByType('error');

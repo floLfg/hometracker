@@ -1,5 +1,5 @@
 <template>
-	<div class="blue-box user-show user-create">
+	<div class="blue-box item-show user-create">
         <form v-on:submit.prevent="storeUser(user)">
 
             <input type="text" ref="name" name="name" v-model="user.name" class="form-control" placeholder= "Nom ..." autocomplete="new-password">

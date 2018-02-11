@@ -37,6 +37,12 @@ Vue.component('SpendingsSituation', require('./components/spendings/charts/Spend
 Vue.component('Categories', require('./components/categories/Categories.vue'));
 Vue.component('CategoryCreate', require('./components/categories/CategoryCreate.vue'));
 
+Vue.component('Savings', require('./components/savings/Savings.vue'));
+Vue.component('SavingShow', require('./components/savings/SavingShow.vue'));
+Vue.component('SavingCreate', require('./components/savings/SavingCreate.vue'));
+
+Vue.component('ParticipationCreate', require('./components/participations/ParticipationCreate.vue'));
+
 const router = new VueRouter({
   	routes: [
   		{
@@ -44,11 +50,6 @@ const router = new VueRouter({
             path: '/home',
             alias: '/',
     		component: Vue.component('Home')
-    	},
-    	{
-            name: 'users',
-            path: '/users',
-    		component: Vue.component('Users')
     	},
         {
             name: 'spendings',
@@ -59,6 +60,16 @@ const router = new VueRouter({
             name: 'synthesis',
             path: '/synthesis',
             component: Vue.component('SpendingsCharts')
+        },
+        {
+            name: 'savings',
+            path: '/savings',
+            component: Vue.component('Savings')
+        },
+        {
+            name: 'users',
+            path: '/users',
+            component: Vue.component('Users')
         }
   	]
 })

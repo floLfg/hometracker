@@ -44,4 +44,8 @@ class User extends Authenticatable
 
         $this->attributes['password'] = $value;
     }
+
+    public function savings() {
+        return $this->belongsToMany(Saving::class)->withPivot('amount');
+    }
 }

@@ -32,6 +32,12 @@ Route::group(['middleware' => ['auth']], function() {
 			'index', 'store', 'update', 'destroy'
 		]]);
 
+		Route::resource('savings', 'ApiSavingController', ['only' => [
+			'index', 'store', 'update', 'destroy'
+		]]);
+
+		Route::post('savings/{id}/participations', 'ApiSavingController@addParticipation');
+
 		Route::get('charts/spendings', 'ApiChartController@spendings');
 		Route::get('charts/dividing', 'ApiChartController@dividing');
 		Route::get('charts/situation', 'ApiChartController@situation');

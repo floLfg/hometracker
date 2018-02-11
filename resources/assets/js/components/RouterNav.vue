@@ -15,6 +15,11 @@
         	Synthèse
     	</router-link>
 
+        <router-link :to="{name: 'savings'}" :class="{active: $route.name === 'savings'}">
+            <img height="22" src="/img/savings.png">
+            Économies
+        </router-link>
+
         <router-link :to="{name: 'users'}" :class="{active: $route.name === 'users'}">
         	<img height="22" src="/img/members.png">
         	Membres
