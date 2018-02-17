@@ -40,7 +40,8 @@ class ApiSavingController extends Controller
         $user = auth()->user();
 
         if (! $saving = $user->savings()->find($id)) {
-            $saving = $user->savings()->attach($id);
+            $saving = Saving::find($id);
+            $user->savings()->attach($id);
         }
 
         $saving->pivot->amount += $request->input('amount');
