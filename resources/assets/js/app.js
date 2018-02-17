@@ -40,6 +40,7 @@ Vue.component('CategoryCreate', require('./components/categories/CategoryCreate.
 Vue.component('Savings', require('./components/savings/Savings.vue'));
 Vue.component('SavingShow', require('./components/savings/SavingShow.vue'));
 Vue.component('SavingCreate', require('./components/savings/SavingCreate.vue'));
+Vue.component('SavingSituation', require('./components/savings/charts/SavingSituation.vue'));
 
 Vue.component('ParticipationCreate', require('./components/participations/ParticipationCreate.vue'));
 

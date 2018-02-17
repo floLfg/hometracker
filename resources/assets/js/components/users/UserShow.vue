@@ -1,5 +1,5 @@
 <template>
-	<div class="blue-box item-show" v-on:click="editUser(item)" :style="'border-color:'+user.color">
+	<div class="blue-box item-show clickable" v-on:click="editUser(item)" :style="'border-color:'+user.color">
         <div v-show="editing">
             <button class="btn-delete" v-on:click.stop="deleteUser(item)">Supprimer</button>
             <form v-on:submit.prevent="updateUser(item)" v-bind:id="'form-user-' + item.id">

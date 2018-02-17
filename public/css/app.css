@@ -7854,6 +7854,11 @@ legend button {
   margin-top: -5px;
 }
 
+legend.smaller {
+  font-size: 20px;
+  border-bottom-width: 2px;
+}
+
 .highcharts-container {
   margin: auto;
   max-width: 100%;
@@ -7906,6 +7911,12 @@ td.small {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+.flex-container.full-width > div {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
 
 .home {
@@ -8005,6 +8016,9 @@ td.small {
   border: 1px solid #7badc1;
   border-radius: 3px;
   background-color: #ffffff;
+}
+
+.blue-box.clickable {
   cursor: pointer;
 }
 
@@ -8032,6 +8046,7 @@ td.small {
   left: 0;
   top: 0;
   text-align: right;
+  cursor: pointer;
 }
 
 .item-show:hover .edit-label {
@@ -8171,4 +8186,28 @@ table .btn-delete {
 
 tr.orders th {
   cursor: pointer;
+}
+
+.saving h2, .saving h3 {
+  margin-top: 0;
+  color: #7badc1;
+  font-family: Lobster;
+  text-align: center;
+}
+
+.saving h3 {
+  font-size: 24px;
+  color: #707371;
+  margin-bottom: 50px;
+}
+
+.participation-create button[type=submit] {
+  margin-top: 5px;
+  float: right;
+  position: static;
+}
+
+label {
+  color: #707371;
+  font-weight: normal;
 }

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="flex-container center">
+        <div class="flex-container center full-width">
             <saving-show
                 v-for="saving in savings"
                 :key="saving.id"

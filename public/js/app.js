@@ -1821,7 +1821,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.post('api/savings/' + this.saving.id + '/participations?amount=' + this.amount).then(function (response) {
                 _this.$parent.fetchData();
-                _this.$root.$refs.toastr.s('Apport ajouté');
+                _this.$root.$refs.toastr.s('Montant ajouté');
                 _this.amount = 0;
                 _this.$nextTick(function () {
                     return _this.$refs.amount.focus();
@@ -1850,6 +1850,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
 //
 //
 //
@@ -1917,6 +1920,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2059,6 +2073,97 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.savings = response.data;
                 _this.$emit('update:savings');
             });
+        }
+    }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/components/savings/charts/SavingSituation.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        saving: {
+            type: Object,
+            required: true
+        }
+    },
+    data: function data() {
+        return {
+            options: {
+                title: { text: '' },
+                credits: { enabled: false },
+                xAxis: { categories: [this.saving.title] },
+                chart: {
+                    type: 'column',
+                    width: 380
+                },
+                yAxis: {
+                    min: 0,
+                    max: this.saving.target_amount,
+                    title: { text: '' },
+                    stackLabels: {
+                        enabled: true,
+                        style: {
+                            fontWeight: 'bold',
+                            color: 'gray'
+                        }
+                    }
+                },
+                legend: {
+                    align: 'right',
+                    verticalAlign: 'bottom',
+                    floating: false,
+                    backgroundColor: 'white',
+                    borderColor: '#CCC',
+                    borderWidth: 1,
+                    shadow: false
+                },
+                tooltip: {
+                    headerFormat: '<b>{point.x}</b><br/>',
+                    pointFormat: '{series.name}: {point.y} <b>/</b> {point.stackTotal}<br>Objectif: ' + this.saving.target_amount
+                },
+                plotOptions: {
+                    column: {
+                        stacking: 'normal',
+                        dataLabels: { enabled: false }
+                    }
+                },
+                series: []
+            }
+        };
+    },
+    mounted: function mounted() {
+        this.fetchData();
+    },
+
+    watch: {
+        saving: function saving(_saving) {
+            this.fetchData();
+        }
+    },
+    methods: {
+        fetchData: function fetchData() {
+            var chart = this.$refs.savingSituationChart;
+            chart.removeSeries();
+            for (var i = 0; i < this.saving.users.length; i++) {
+                var user = this.saving.users[i];
+                chart.addSeries({
+                    name: user.name,
+                    data: [user.pivot.amount],
+                    color: user.color
+                });
+            }
         }
     }
 });
@@ -34648,7 +34753,6 @@ var render = function() {
     _c(
       "form",
       {
-        staticClass: "flex-container",
         on: {
           submit: function($event) {
             $event.preventDefault()
@@ -34668,7 +34772,7 @@ var render = function() {
           ],
           ref: "title",
           staticClass: "form-control",
-          attrs: { type: "text", name: "title", placeholder: "Motif ..." },
+          attrs: { type: "text", name: "title", placeholder: "Projet ..." },
           domProps: { value: _vm.saving.title },
           on: {
             input: function($event) {
@@ -34679,6 +34783,14 @@ var render = function() {
             }
           }
         }),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "target_amount" } }, [
+          _vm._v("Montant visé :")
+        ]),
+        _vm._v(" "),
+        _c("br"),
         _vm._v(" "),
         _c("input", {
           directives: [
@@ -34709,15 +34821,18 @@ var render = function() {
           }
         }),
         _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
         _c(
           "button",
           {
-            staticClass: "btn btn-primary",
-            staticStyle: { "margin-top": "-1px" },
+            staticClass: "btn btn-primary pull-right",
             attrs: { type: "submit" }
           },
           [_vm._v("\n            Créer\n        ")]
-        )
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "clearer" })
       ]
     )
   ])
@@ -34745,6 +34860,7 @@ var render = function() {
     _c(
       "form",
       {
+        staticClass: "participation-create",
         on: {
           submit: function($event) {
             $event.preventDefault()
@@ -34753,7 +34869,9 @@ var render = function() {
         }
       },
       [
-        _c("p", [_vm._v("Ajouter un montant")]),
+        _c("legend", { staticClass: "smaller" }, [
+          _vm._v("Ajouter un montant")
+        ]),
         _vm._v(" "),
         _c("input", {
           directives: [
@@ -34766,12 +34884,7 @@ var render = function() {
           ],
           ref: "amount",
           staticClass: "form-control",
-          attrs: {
-            type: "number",
-            name: "amount",
-            placeholder: "Montant apporté ...",
-            step: "0.01"
-          },
+          attrs: { type: "number", name: "amount", step: "0.01" },
           domProps: { value: _vm.amount },
           on: {
             input: function($event) {
@@ -34814,7 +34927,7 @@ var render = function() {
   return _c(
     "div",
     {
-      staticClass: "blue-box item-show",
+      staticClass: "blue-box item-show clickable",
       style: "border-color:" + _vm.user.color,
       on: {
         click: function($event) {
@@ -35001,6 +35114,36 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-4a008037\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/components/savings/charts/SavingSituation.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("vue-highcharts", {
+        ref: "savingSituationChart",
+        attrs: { options: _vm.options }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-4a008037", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-4d79ae45\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/components/users/UserCreate.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -35161,7 +35304,7 @@ var render = function() {
   return _c("div", [
     _c(
       "div",
-      { staticClass: "flex-container center" },
+      { staticClass: "flex-container center full-width" },
       _vm._l(_vm.savings, function(saving) {
         return _c("saving-show", { key: saving.id, attrs: { saving: saving } })
       })
@@ -36037,7 +36180,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "blue-box item-show" }, [
+  return _c("div", { staticClass: "blue-box item-show saving" }, [
     _c(
       "div",
       {
@@ -36077,6 +36220,10 @@ var render = function() {
             }
           },
           [
+            _c("label", { attrs: { for: "title" } }, [_vm._v("Projet :")]),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
             _c("input", {
               directives: [
                 {
@@ -36099,6 +36246,13 @@ var render = function() {
                 }
               }
             }),
+            _vm._v(" "),
+            _c("br"),
+            _c("br"),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "target_amount" } }, [
+              _vm._v("Montant visé :")
+            ]),
             _vm._v(" "),
             _c("br"),
             _vm._v(" "),
@@ -36167,25 +36321,42 @@ var render = function() {
           })
         ]),
         _vm._v(" "),
-        _c("p", [_vm._v("Projet : " + _vm._s(_vm.item.title))]),
+        _c("h2", [_vm._v(_vm._s(_vm.item.title))]),
         _vm._v(" "),
-        _c("p", [_vm._v("Montant visé : " + _vm._s(_vm.item.target_amount))]),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v("Montant actuel : " + _vm._s(_vm.item.current_amount))
+        _c("h3", [
+          _vm._v(
+            "\n                Cagnotte : " +
+              _vm._s(_vm.item.current_amount) +
+              " / " +
+              _vm._s(_vm.item.target_amount) +
+              "\n                (" +
+              _vm._s(
+                (
+                  _vm.item.current_amount /
+                  _vm.item.target_amount *
+                  100
+                ).toPrecision(3)
+              ) +
+              " %)\n            "
+          )
         ]),
         _vm._v(" "),
-        _vm._l(_vm.saving.users, function(user) {
-          return _c("p", [
-            _vm._v(_vm._s(user.name + " : " + user.pivot.amount))
-          ])
-        }),
-        _vm._v(" "),
-        _c("hr"),
-        _vm._v(" "),
-        _c("participation-create", { attrs: { saving: _vm.item } })
-      ],
-      2
+        _c("div", { staticClass: "row" }, [
+          _c(
+            "div",
+            { staticClass: "col-md-8" },
+            [_c("saving-situation", { attrs: { saving: _vm.item } })],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "col-md-4" },
+            [_c("participation-create", { attrs: { saving: _vm.item } })],
+            1
+          )
+        ])
+      ]
     )
   ])
 }
@@ -50242,6 +50413,7 @@ Vue.component('CategoryCreate', __webpack_require__("./resources/assets/js/compo
 Vue.component('Savings', __webpack_require__("./resources/assets/js/components/savings/Savings.vue"));
 Vue.component('SavingShow', __webpack_require__("./resources/assets/js/components/savings/SavingShow.vue"));
 Vue.component('SavingCreate', __webpack_require__("./resources/assets/js/components/savings/SavingCreate.vue"));
+Vue.component('SavingSituation', __webpack_require__("./resources/assets/js/components/savings/charts/SavingSituation.vue"));
 
 Vue.component('ParticipationCreate', __webpack_require__("./resources/assets/js/components/participations/ParticipationCreate.vue"));
 
@@ -50719,6 +50891,55 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-4e90cefc", Component.options)
   } else {
     hotAPI.reload("data-v-4e90cefc", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/savings/charts/SavingSituation.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/components/savings/charts/SavingSituation.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-4a008037\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/components/savings/charts/SavingSituation.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/savings/charts/SavingSituation.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4a008037", Component.options)
+  } else {
+    hotAPI.reload("data-v-4a008037", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true

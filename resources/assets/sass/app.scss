@@ -143,6 +143,11 @@ legend {
 	    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	    margin-top: -5px;
 	}
+
+	&.smaller {
+		font-size: 20px;
+		border-bottom-width: 2px;
+	}
 }
 
 .highcharts-container  {
@@ -194,6 +199,12 @@ td.small {
 
 	&.center {
 		justify-content: center;
+	}
+
+	&.full-width {
+		& > div {
+			flex: 1;
+		}
 	}
 }
 
@@ -290,7 +301,10 @@ td.small {
 	border: 1px solid $main_dark;
 	border-radius: 3px;
 	background-color: $white;
-	cursor: pointer;
+
+	&.clickable {
+		cursor: pointer;
+	}
 }
 
 .item-show {
@@ -315,6 +329,7 @@ td.small {
 	    left: 0;
 	    top: 0;
 		text-align: right;
+		cursor: pointer;
 	}
 
 	&:hover{
@@ -479,4 +494,32 @@ tr.orders {
 	th {
 		cursor: pointer;
 	}
+}
+
+.saving {
+	h2, h3 {
+		margin-top: 0;
+		color: $main_dark;
+		font-family: Lobster;
+		text-align: center;
+	}
+
+	h3 {
+		font-size: 24px;
+		color: $lighter_grey;
+		margin-bottom: 50px;
+	}
+}
+
+.participation-create {
+	button[type=submit] {
+		margin-top: 5px;
+		float: right;
+		position: static;
+	}
+}
+
+label {
+	color: $lighter_grey;
+	font-weight: normal;
 }

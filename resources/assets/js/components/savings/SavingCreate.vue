@@ -3,14 +3,17 @@
         <legend>
             Nouveau projet d'économies
         </legend>
-        <form v-on:submit.prevent="storeSaving(saving)" class="flex-container">
-            <input type="text" ref="title" name="title" v-model="saving.title" class="form-control" placeholder="Motif ...">
-        
+        <form v-on:submit.prevent="storeSaving(saving)">
+            <input type="text" ref="title" name="title" v-model="saving.title" class="form-control" placeholder="Projet ...">
+            <br>
+            <label for="target_amount">Montant visé :</label>
+            <br>
             <input type="number" ref="target_amount" name="target_amount" v-model="saving.target_amount" class="form-control" placeholder="Montant visé ..." min="0" step="0.01">
-
-            <button type="submit" class="btn btn-primary" style="margin-top: -1px;">
+            <br>
+            <button type="submit" class="btn btn-primary pull-right">
                 Créer
             </button>
+            <div class="clearer"></div>
         </form>
     </div>
 </template>
