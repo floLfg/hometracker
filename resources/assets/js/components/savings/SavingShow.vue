@@ -51,8 +51,11 @@
             };   
         },
         watch: {
-            saving: function (saving) {
-                this.item = saving;
+            saving: {
+                handler: function (saving) {
+                    this.item = saving;
+                },
+                deep: true
             }
         },
         methods: {

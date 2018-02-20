@@ -61,13 +61,23 @@
             this.fetchData();
         },
         watch: {
-            saving: function (saving) {
-                this.fetchData();
+            saving: {
+                handler: function (saving) {
+                    this.fetchData();
+                },
+                deep: true
             }
         },
         methods: {
             fetchData() {
                 let chart = this.$refs.savingSituationChart;
+                console.log(this.saving.target_amount);
+                chart.delegateMethod('update', {
+                    yAxis: {
+                        max: this.saving.target_amount
+                    }
+                });
+
                 chart.removeSeries();
                 for (let i = 0; i <  this.saving.users.length; i ++) {
                     let user = this.saving.users[i];
