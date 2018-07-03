@@ -45,6 +45,7 @@ Vue.component('SavingSituation', require('./components/savings/charts/SavingSitu
 Vue.component('ParticipationCreate', require('./components/participations/ParticipationCreate.vue'));
 
 const router = new VueRouter({
+    mode: 'history',
   	routes: [
   		{
             name: 'home',
@@ -73,7 +74,7 @@ const router = new VueRouter({
             component: Vue.component('Users')
         }
   	]
-})
+});
 
 const app = new Vue({
     el: '#app',

@@ -83,12 +83,6 @@
                 axios.post('api/spendings', spending).then((response) => {
                     this.$parent.fetchData();
                     this.$root.$refs.toastr.s('Dépense ajoutée');
-                    this.spending = {
-                        'date': this.today,
-                        'label': '',
-                        'amount': '',
-                        'user_id': ''
-                    };
                     this.$nextTick(() => this.$refs.label.focus());
                 }).catch(error => {
                     let messages = '';

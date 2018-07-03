@@ -44,6 +44,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        // Allows VueRouter to use the history router mode (more information here : https://router.vuejs.org/guide/essentials/history-mode.html#example-server-configurations)
+        if (method_exists($exception, 'getStatusCode') && $exception->getStatusCode() == 404) {
+            return response()->view('app');
+        }
+
         return parent::render($request, $exception);
     }
 
